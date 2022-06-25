@@ -1,5 +1,17 @@
 <?php
+session_start();
 include 'func.php';
+
+if (!isset($_SESSION['qwertyuiop1234567890'])) {
+    echo "
+    <script>
+    alert('Silahkan login dulu');
+    window.location = 'login.php';
+    </script>
+    ";
+}
+
+$nama_user = $_SESSION['nama'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -332,7 +344,7 @@ include 'func.php';
                             <img class="nav-user-photo" src="assets/images/avatars/user.jpg" alt="Jason's Photo" />
                             <span class="user-info">
                                 <small>Welcome,</small>
-                                Jason
+                                <?= $nama_user; ?>
                             </span>
 
                             <i class="ace-icon fa fa-caret-down"></i>
@@ -347,7 +359,7 @@ include 'func.php';
                             </li>
 
                             <li>
-                                <a href="profile.html">
+                                <a href="#">
                                     <i class="ace-icon fa fa-user"></i>
                                     Profile
                                 </a>
@@ -356,7 +368,7 @@ include 'func.php';
                             <li class="divider"></li>
 
                             <li>
-                                <a href="#">
+                                <a href="logout.php">
                                     <i class="ace-icon fa fa-power-off"></i>
                                     Logout
                                 </a>
