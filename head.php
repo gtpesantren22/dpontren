@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'func.php';
+include 'fungsi.php';
 
 if (!isset($_SESSION['qwertyuiop1234567890'])) {
     echo "
