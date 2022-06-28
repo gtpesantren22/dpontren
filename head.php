@@ -466,6 +466,14 @@ $nama_user = $_SESSION['nama'];
 
                             <b class="arrow"></b>
                         </li>
+                        <li class="">
+                            <a href="tarik.php">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Tarik Data (PSB)
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
                     </ul>
                 </li>
 
