@@ -8,3 +8,5 @@ $conn2 = mysqli_connect("localhost", "root", "", "psb22");
 
 $t = array('Bayar', 'Ust/Usdtz', 'Khaddam', 'Gratis', 'Berhenti');
 $tl = array('', 'MTs', 'SMP', 'MA', 'SMK');
+
+// ok
