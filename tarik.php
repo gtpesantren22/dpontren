@@ -58,7 +58,7 @@ mysqli_query($conn, "CREATE VIEW datas AS SELECT a.* FROM psb22.tb_santri a JOIN
 
                             <!-- div.dataTables_borderWrap -->
                             <div class="table-responsive">
-                                <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                                <table id="dynamic-table" class="table table-striped table-bordered table-hover table-sm">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -84,7 +84,7 @@ mysqli_query($conn, "CREATE VIEW datas AS SELECT a.* FROM psb22.tb_santri a JOIN
                                                 <td><?= $r['desa'] . ' - ' . $r['kec'] . ' - ' . $r['kab'] ?></td>
                                                 <td><?= $tl[$r['lembaga']] ?></td>
                                                 <td>
-                                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#exampleModal<?= $r['nis'] ?>">
+                                                    <button type="button" class="btn btn-primary btn-minier" data-toggle="modal" data-target="#exampleModal<?= $r['nis'] ?>">
                                                         <i class="fa fa-times"></i> Tarik Data
                                                     </button>
                                                 </td>
