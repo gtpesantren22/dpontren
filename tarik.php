@@ -134,6 +134,7 @@ if (isset($_POST['tarik'])) {
     $dtas = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM datas WHERE nis = '$nis' "));
 
     $nik = $dtas['nik'];
+    $no_kk = $dtas['no_kk'];
     $nama = $dtas['nama'];
     $tempat = $dtas['tempat'];
     $tanggal = $dtas['$tanggal'];
