@@ -1,7 +1,7 @@
 <?php
 
 include 'head.php';
-include 'func.php';
+include 'fungsi.php';
 
 $nis = $_GET['nis'];
 $r = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM tb_santri WHERE nis = '$nis' "));

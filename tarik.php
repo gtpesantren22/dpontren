@@ -73,7 +73,8 @@ include 'f_tarik.php';
                                         $no = 1;
                                         $sql = mysqli_query($conn, "SELECT * FROM datas ");
                                         while ($r = mysqli_fetch_assoc($sql)) {
-
+                                            $nis = $r['nis'];
+                                            $cek = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM tb_santri WHERE nis = '$nis' "));
                                         ?>
                                             <tr>
                                                 <td><?= $no++ ?></td>
@@ -82,9 +83,17 @@ include 'f_tarik.php';
                                                 <td><?= $r['desa'] . ' - ' . $r['kec'] . ' - ' . $r['kab'] ?></td>
                                                 <td><?= $tl[$r['lembaga']] ?></td>
                                                 <td>
-                                                    <button type="button" class="btn btn-primary btn-minier" data-toggle="modal" data-target="#exampleModal<?= $r['nis'] ?>">
-                                                        <i class="fa fa-times"></i> Tarik Data
-                                                    </button>
+                                                    <?php if ($cek == 1) { ?>
+                                                        <span class="label label-success"><i class="fa fa-check"></i> sudah</span>
+                                                        <button type="button" class="btn btn-primary btn-minier" disabled>
+                                                            <i class="fa fa-cloud-download"></i> Tarik Data
+                                                        </button>
+                                                    <?php } else { ?>
+                                                        <span class="label label-danger"><i class="fa fa-times"></i> belum</span>
+                                                        <button type="button" class="btn btn-primary btn-minier" data-toggle="modal" data-target="#exampleModal<?= $r['nis'] ?>">
+                                                            <i class="fa fa-cloud-download"></i> Tarik Data
+                                                        </button>
+                                                    <?php } ?>
                                                 </td>
                                             </tr>
 
@@ -135,7 +144,7 @@ if (isset($_POST['tarik'])) {
     $no_kk = $dtas['no_kk'];
     $nama = $dtas['nama'];
     $tempat = $dtas['tempat'];
-    $tanggal = $dtas['$tanggal'];
+    $tanggal = $dtas['tanggal'];
     $jkl = $dtas['jkl'];
     $t_formal = $tl[$dtas['lembaga']];
     $jln = $dtas['jln'];
@@ -145,5 +154,28 @@ if (isset($_POST['tarik'])) {
     $kec = $dtas['kec'];
     $kab = $dtas['kab'];
     $prov = $dtas['prov'];
+    $bapak = $dtas['bapak'];
+    $ibu = $dtas['ibu'];
+    $hp = $dtas['hp'];
+    $password = $dtas['password'];
+    $stts = $dtas['stts'];
+    $anak_ke = $dtas['anak_ke'];
+    $jml_sdr = $dtas['jml_sdr'];
+    $a_pkj = $dtas['a_pkj'];
+    $i_pkj = $dtas['i_pkj'];
+    $ket = $dtas['ket'];
+    $t_kos = $dtas['t_kos'];
+    $kamar = $dtas['kamar'];
+    $komplek = $dtas['komplek'];
+
+    $sql = mysqli_query($conn, "INSERT INTO tb_santri (nis, nik, no_kk, nama, tempat, tanggal, jkl, t_formal, jln, rt, rw, desa, kec, kab, prov, bapak, ibu, hp, pass, anak_ke, jml_sdr, pkj_a, pkj_i, ket, t_kos, kamar, komplek) VALUES ('$nis', '$nik', '$no_kk', '$nama', '$tempat', '$tanggal', '$jkl', '$t_formal', '$jln', '$rt', '$rw', '$desa', '$kec', '$kab', '$prov', '$bapak', '$ibu', '$hp', '$password', '$anak_ke', '$jml_sdr', '$a_pkj', '$i_pkj', '$ket', '$t_kos', '$kamar', '$komplek') ");
+
+    if ($sql) {
+        echo "
+        <script>
+            window.location = 'tarik.php';
+        </script>
+        ";
+    }
 }
 ?>

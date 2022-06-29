@@ -2,8 +2,8 @@
     <div class="footer-inner">
         <div class="footer-content">
             <span class="bigger-120">
-                <span class="blue bolder">Ace</span>
-                Application &copy; 2013-2014
+                <span class="blue bolder">D'Pontren</span>
+                App &copy; 2022
             </span>
 
             &nbsp; &nbsp;
@@ -16,9 +16,6 @@
                     <i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
                 </a>
 
-                <a href="#">
-                    <i class="ace-icon fa fa-rss-square orange bigger-150"></i>
-                </a>
             </span>
         </div>
     </div>
@@ -354,21 +351,6 @@
         });
         /***************/
 
-
-
-
-
-        /**
-        //add horizontal scrollbars to a simple table
-        $('#simple-table').css({'width':'2000px', 'max-width': 'none'}).wrap('<div style="width: 1000px;" />').parent().ace_scroll(
-          {
-        	horizontal: true,
-        	styleClass: 'scroll-top scroll-dark scroll-visible',//show the scrollbars on top(default is bottom)
-        	size: 2000,
-        	mouseWheelLock: true
-          }
-        ).css('padding-top', '12px');
-        */
 
 
     })

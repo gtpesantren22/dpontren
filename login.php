@@ -312,7 +312,7 @@
 
 <?php
 
-include 'func.php';
+include 'fungsi.php';
 
 if (isset($_POST['masuk'])) {
 
