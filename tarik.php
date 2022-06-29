@@ -1,7 +1,5 @@
 <?php
 include 'head.php';
-include 'f_tarik.php';
-
 ?>
 
 <div class="main-content">
@@ -50,6 +48,9 @@ include 'f_tarik.php';
 
                             <div class="table-header">
                                 Data santri yang masih belum ditarik ke D'Pontren
+                                <form action="f_tarik.php?snc=exc" method="post">
+                                    <button type="submit" class="btn btn-sm pull-right btn-warning"><i class="fa fa-refresh"></i> Refresh Data</button>
+                                </form>
                             </div>
 
                             <!-- div.table-responsive -->
