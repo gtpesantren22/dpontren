@@ -47,8 +47,8 @@ include 'head.php';
                         <div class="col-xs-12">
 
                             <div class="table-header">
-                                Data santri yang masih belum ditarik ke D'Pontren
                                 <form action="f_tarik.php?snc=exc" method="post">
+                                    Data santri yang masih belum ditarik ke D'Pontren
                                     <button type="submit" class="btn btn-sm pull-right btn-warning"><i class="fa fa-refresh"></i> Refresh Data</button>
                                 </form>
                             </div>
