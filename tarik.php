@@ -85,12 +85,12 @@ include 'head.php';
                                                 <td><?= $tl[$r['lembaga']] ?></td>
                                                 <td>
                                                     <?php if ($cek == 1) { ?>
-                                                        <span class="label label-success"><i class="fa fa-check"></i> sudah</span>
+                                                        <span class="label label-success"><i class="fa fa-check"></i></span>
                                                         <button type="button" class="btn btn-primary btn-minier" disabled>
                                                             <i class="fa fa-cloud-download"></i> Tarik Data
                                                         </button>
                                                     <?php } else { ?>
-                                                        <span class="label label-danger"><i class="fa fa-times"></i> belum</span>
+                                                        <span class="label label-danger"><i class="fa fa-times"></i></span>
                                                         <button type="button" class="btn btn-primary btn-minier" data-toggle="modal" data-target="#exampleModal<?= $r['nis'] ?>">
                                                             <i class="fa fa-cloud-download"></i> Tarik Data
                                                         </button>
