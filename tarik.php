@@ -169,7 +169,7 @@ if (isset($_POST['tarik'])) {
     $kamar = $dtas['kamar'];
     $komplek = $dtas['komplek'];
 
-    $sql = mysqli_query($conn, "INSERT INTO tb_santri (nis, nik, no_kk, nama, tempat, tanggal, jkl, t_formal, jln, rt, rw, desa, kec, kab, prov, bapak, ibu, hp, pass, anak_ke, jml_sdr, pkj_a, pkj_i, ket, t_kos, kamar, komplek) VALUES ('$nis', '$nik', '$no_kk', '$nama', '$tempat', '$tanggal', '$jkl', '$t_formal', '$jln', '$rt', '$rw', '$desa', '$kec', '$kab', '$prov', '$bapak', '$ibu', '$hp', '$password', '$anak_ke', '$jml_sdr', '$a_pkj', '$i_pkj', '$ket', '$t_kos', '$kamar', '$komplek') ");
+    $sql = mysqli_query($conn, "INSERT INTO tb_santri (nis, nik, no_kk, nama, tempat, tanggal, jkl, t_formal, jln, rt, rw, desa, kec, kab, prov, bapak, ibu, hp, pass, anak_ke, jml_sdr, pkj_a, pkj_i, ket, t_kos, kamar, komplek, aktif) VALUES ('$nis', '$nik', '$no_kk', '$nama', '$tempat', '$tanggal', '$jkl', '$t_formal', '$jln', '$rt', '$rw', '$desa', '$kec', '$kab', '$prov', '$bapak', '$ibu', '$hp', '$password', '$anak_ke', '$jml_sdr', '$a_pkj', '$i_pkj', '$ket', '$t_kos', '$kamar', '$komplek', 'Y') ");
 
     if ($sql) {
         echo "
