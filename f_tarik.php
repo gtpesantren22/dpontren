@@ -1,7 +1,7 @@
 <?php
 include 'fungsi.php';
 
-$qr = $_POST['snc'];
+$qr = $_GET['snc'];
 
 if ($qr ===  'exc') {
     mysqli_query($conn, "DROP VIEW IF EXISTS datas ");
