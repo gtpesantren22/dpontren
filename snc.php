@@ -16,7 +16,7 @@ $conn2 = mysqli_connect("localhost", "root", "", "$dbes");
 // $conn2 = mysqli_connect("localhost", "u9048253_dwk", "PesantrenDWKIT2021", "$dbes");
 
 $s1 = mysqli_query($conn2, "TRUNCATE TABLE $data");
-$s2 = mysqli_query($conn2, "CREATE TABLE $dbes.$data SELECT * FROM $dbu.$data");
+$s2 = mysqli_query($conn2, "INSERT INTO $dbes.$data SELECT * FROM $dbu.$data");
 $s3 = mysqli_query($conn, "INSERT INTO snkr VALUES('', '$tj', '$data', '$tgl') ");
 
 if ($s1 && $s2 && $s3) {
