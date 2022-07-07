@@ -130,6 +130,74 @@ include 'head.php';
                     <!-- PAGE CONTENT ENDS -->
                 </div><!-- /.col -->
             </div><!-- /.row -->
+            <hr>
+            <div class="row">
+                <?php
+                $tmf = mysqli_query($conn, "SELECT t_formal FROM tb_santri GROUP BY t_formal ");
+                while ($dtf = mysqli_fetch_assoc($tmf)) {
+                    $lmbg = $dtf['t_formal'];
+                ?>
+                    <div class="col-xs-6 mt-5">
+
+                        <div class="table-header">
+                            Data Siswa di Lembaga <?= $dtf['t_formal']; ?>
+                        </div>
+
+                        <!-- div.table-responsive -->
+
+                        <div class="table-responsive">
+                            <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Kelas</th>
+                                        <th>Tapel</th>
+                                        <th>Jumlah</th>
+                                        <!-- <th style="text-align: center;">Aksi</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    // include 'config/koneksi.php';
+                                    $no = 1;
+                                    $sql = mysqli_query($conn, "SELECT * FROM kl_formal WHERE lembaga = '$lmbg' ORDER BY nm_kelas");
+                                    while ($row = mysqli_fetch_assoc($sql)) {
+                                        $kls = explode('-', $row['nm_kelas']);
+                                        $k_formal = htmlspecialchars(mysqli_real_escape_string($conn, $kls[0]));
+                                        $jurusan = $kls[1];
+                                        $r_formal = $kls[2];
+                                        $t_formal = $kls[3];
+
+                                        $jml = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM tb_santri WHERE k_formal = '$k_formal' AND r_formal = '$r_formal' AND jurusan = '$jurusan' AND t_formal = '$t_formal' AND aktif = 'Y' "));
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $no++ ?></td>
+                                            <td><?php echo $row['nm_kelas'] ?></td>
+                                            <td><?php echo $row['tahun'] ?></td>
+                                            <td><?php echo $jml ?> santri</td>
+
+                                            <!-- <td style="text-align: center;">
+                                                    <a href="<?= 'cek_formal.php?kls=' . $row['nm_kelas'] . '&jkl=Laki-laki' ?>" class="btn btn-primary btn-icon-split btn-sm">
+                                                        <span class="icon text-white-100">
+                                                            <i class="fas fa-search"></i>
+                                                        </span>
+                                                        <span class="text">Cek Santri</span>
+                                                    </a>
+
+                                                </td> -->
+                                        </tr>
+                                    <?php } ?>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- div.dataTables_borderWrap -->
+
+                    </div>
+                <?php } ?>
+            </div>
         </div><!-- /.page-content -->
     </div>
 </div><!-- /.main-content -->
