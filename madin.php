@@ -125,8 +125,126 @@ include 'head.php';
                             <!-- div.dataTables_borderWrap -->
 
                         </div>
+                        <hr>
                     </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-xs-6 mt-5">
 
+                            <div class="table-header">
+                                Data Siswa di kelas madin Putra
+                            </div>
+
+                            <!-- div.table-responsive -->
+
+                            <div class="table-responsive">
+                                <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Kelas</th>
+                                            <th>Tapel</th>
+                                            <th>Jumlah</th>
+                                            <!-- <th style="text-align: center;">Aksi</th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        // include 'config/koneksi.php';
+                                        $no = 1;
+                                        $sql = mysqli_query($conn, "SELECT * FROM kl_madin ORDER BY nm_kelas");
+                                        while ($row = mysqli_fetch_assoc($sql)) {
+                                            $kls = explode('-', $row['nm_kelas']);
+                                            $k_madin = htmlspecialchars(mysqli_real_escape_string($conn, $kls[0]));
+                                            $r_madin = $kls[1];
+
+                                            $jml = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM tb_santri WHERE k_madin = '$k_madin' AND r_madin = '$r_madin' AND jkl = 'Laki-laki' AND aktif = 'Y' "));
+                                        ?>
+                                            <tr>
+                                                <td><?php echo $no++ ?></td>
+                                                <td><?php echo $row['nm_kelas'] ?></td>
+                                                <td><?php echo $row['tahun'] ?></td>
+                                                <td><?php echo $jml ?> santri</td>
+
+                                                <!-- <td style="text-align: center;">
+                                                    <a href="<?= 'cek_madin.php?kls=' . $row['nm_kelas'] . '&jkl=Laki-laki' ?>" class="btn btn-primary btn-icon-split btn-sm">
+                                                        <span class="icon text-white-100">
+                                                            <i class="fas fa-search"></i>
+                                                        </span>
+                                                        <span class="text">Cek Santri</span>
+                                                    </a>
+
+                                                </td> -->
+                                            </tr>
+                                        <?php } ?>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- div.dataTables_borderWrap -->
+
+                        </div>
+
+                        <div class="col-xs-6 mt-5">
+
+                            <div class="table-header">
+                                Data Siswa di kelas madin Putri
+                            </div>
+
+                            <!-- div.table-responsive -->
+
+                            <div class="table-responsive">
+                                <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Kelas</th>
+                                            <th>Tapel</th>
+                                            <th>Jumlah</th>
+                                            <!-- <th style="text-align: center;">Aksi</th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        // include 'config/koneksi.php';
+                                        $no = 1;
+                                        $sql = mysqli_query($conn, "SELECT * FROM kl_madin ORDER BY nm_kelas");
+                                        while ($row = mysqli_fetch_assoc($sql)) {
+                                            $kls = explode('-', $row['nm_kelas']);
+                                            $k_madin = htmlspecialchars(mysqli_real_escape_string($conn, $kls[0]));
+                                            $r_madin = $kls[1];
+
+                                            $jml = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM tb_santri WHERE k_madin = '$k_madin' AND r_madin = '$r_madin' AND jkl = 'Perempuan' AND aktif = 'Y' "));
+                                        ?>
+                                            <tr>
+                                                <td><?php echo $no++ ?></td>
+                                                <td><?php echo $row['nm_kelas'] ?></td>
+                                                <td><?php echo $row['tahun'] ?></td>
+                                                <td><?php echo $jml ?> santri</td>
+
+                                                <!-- <td style="text-align: center;">
+                                                    <a href="<?= 'cek_madin.php?kls=' . $row['nm_kelas'] . '&jkl=Laki-laki' ?>" class="btn btn-primary btn-icon-split btn-sm">
+                                                        <span class="icon text-white-100">
+                                                            <i class="fas fa-search"></i>
+                                                        </span>
+                                                        <span class="text">Cek Santri</span>
+                                                    </a>
+
+                                                </td> -->
+                                            </tr>
+                                        <?php } ?>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- div.dataTables_borderWrap -->
+
+                        </div>
+                    </div>
                     <!-- PAGE CONTENT ENDS -->
                 </div><!-- /.col -->
             </div><!-- /.row -->
