@@ -12,6 +12,7 @@ if (!isset($_SESSION['qwertyuiop1234567890'])) {
 }
 
 $nama_user = $_SESSION['nama'];
+$level_user = $_SESSION['level'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -467,14 +468,16 @@ $nama_user = $_SESSION['nama'];
 
                             <b class="arrow"></b>
                         </li>
-                        <li class="">
-                            <a href="tarik.php">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Tarik Data (PSB)
-                            </a>
+                        <?php if ($level_user === 'admin') { ?>
+                            <li class="">
+                                <a href="tarik.php">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Tarik Data (PSB)
+                                </a>
 
-                            <b class="arrow"></b>
-                        </li>
+                                <b class="arrow"></b>
+                            </li>
+                        <?php } ?>
                         <li class="">
                             <a href="wali_asuh.php">
                                 <i class="menu-icon fa fa-caret-right"></i>
@@ -485,61 +488,61 @@ $nama_user = $_SESSION['nama'];
                         </li>
                     </ul>
                 </li>
+                <?php if ($level_user === 'admin') { ?>
+                    <li class="">
+                        <a href="#" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-list"></i>
+                            <span class="menu-text"> Data Kelas </span>
 
-                <li class="">
-                    <a href="#" class="dropdown-toggle">
-                        <i class="menu-icon fa fa-list"></i>
-                        <span class="menu-text"> Data Kelas </span>
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
 
-                        <b class="arrow fa fa-angle-down"></b>
-                    </a>
+                        <b class="arrow"></b>
 
-                    <b class="arrow"></b>
+                        <ul class="submenu">
+                            <li class="">
+                                <a href="formal.php">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Lembaga Formal
+                                </a>
 
-                    <ul class="submenu">
-                        <li class="">
-                            <a href="formal.php">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Lembaga Formal
-                            </a>
+                                <b class="arrow"></b>
+                            </li>
 
-                            <b class="arrow"></b>
-                        </li>
+                            <li class="">
+                                <a href="kelas.php">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Kelas Formal
+                                </a>
 
-                        <li class="">
-                            <a href="kelas.php">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Kelas Formal
-                            </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="">
+                                <a href="madin.php">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Kelas Madin
+                                </a>
 
-                            <b class="arrow"></b>
-                        </li>
-                        <li class="">
-                            <a href="madin.php">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Kelas Madin
-                            </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="">
+                                <a href="rombel.php">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Rombel
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="">
+                                <a href="jurusan.php">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Jurusan
+                                </a>
 
-                            <b class="arrow"></b>
-                        </li>
-                        <li class="">
-                            <a href="rombel.php">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Rombel
-                            </a>
-                            <b class="arrow"></b>
-                        </li>
-                        <li class="">
-                            <a href="jurusan.php">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Jurusan
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-                    </ul>
-                </li>
-
+                                <b class="arrow"></b>
+                            </li>
+                        </ul>
+                    </li>
+                <?php } ?>
                 <li class="">
                     <a href="#" class="dropdown-toggle">
                         <i class="menu-icon fa fa-pencil-square-o"></i>
@@ -579,25 +582,25 @@ $nama_user = $_SESSION['nama'];
 
                     </ul>
                 </li>
+                <?php if ($level_user === 'admin') { ?>
+                    <li class="">
+                        <a href="status.php">
+                            <i class="menu-icon fa fa-list-alt"></i>
+                            <span class="menu-text"> Status Santri </span>
+                        </a>
 
-                <li class="">
-                    <a href="status.php">
-                        <i class="menu-icon fa fa-list-alt"></i>
-                        <span class="menu-text"> Status Santri </span>
-                    </a>
+                        <b class="arrow"></b>
+                    </li>
 
-                    <b class="arrow"></b>
-                </li>
+                    <li class="">
+                        <a href="snkr.php">
+                            <i class="menu-icon ace-icon glyphicon glyphicon-refresh"></i>
+                            <span class="menu-text"> Sinkronisasi </span>
+                        </a>
 
-                <li class="">
-                    <a href="snkr.php">
-                        <i class="menu-icon ace-icon glyphicon glyphicon-refresh"></i>
-                        <span class="menu-text"> Sinkronisasi </span>
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-
+                        <b class="arrow"></b>
+                    </li>
+                <?php } ?>
             </ul><!-- /.nav-list -->
 
             <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">

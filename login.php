@@ -327,6 +327,7 @@ if (isset($_POST['masuk'])) {
 			if (password_verify($pass, $dt['password'])) {
 				$_SESSION['qwertyuiop1234567890'] = true;
 				$_SESSION['nama']  = $dt['nama'];
+				$_SESSION['level']  = $dt['level'];
 
 				echo "
                 <script>

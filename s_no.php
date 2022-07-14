@@ -79,8 +79,11 @@ include 'head.php';
                                                 <td><?= $r['nama'] ?></td>
                                                 <td><?= $r['desa'] . ' - ' . $r['kec'] . ' - ' . $r['kab'] ?></td>
                                                 <td><?= $r['k_formal'] . ' - ' . $r['t_formal'] ?></td>
-                                                <td><a href="<?= 'edit.php?nis=' . $r['nis'] ?>"><button class="btn btn-primary btn-minier"><i class="fa fa-edit"></i></button></a>
-                                                    <!--<a href="<?= 'back.php?nis=' . $r['nis'] ?>"><button class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></a>-->
+                                                <td>
+                                                    <?php if ($level_user === 'admin') { ?>
+                                                        <a href="<?= 'edit.php?nis=' . $r['nis'] ?>"><button class="btn btn-primary btn-minier"><i class="fa fa-edit"></i></button></a>
+                                                        <!--<a href="<?= 'back.php?nis=' . $r['nis'] ?>"><button class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></a>-->
+                                                    <?php } ?>
                                                 </td>
                                             </tr>
                                         <?php } ?>

@@ -80,20 +80,22 @@ include 'head.php';
                                                 <td><?= $r['desa'] . ' - ' . $r['kec'] . ' - ' . $r['kab'] ?></td>
                                                 <td><?= $r['k_formal'] . ' - ' . $r['t_formal'] ?></td>
                                                 <td>
-                                                    <div class="btn-group">
-                                                        <button data-toggle="dropdown" class="btn btn-minier btn-primary dropdown-toggle">
-                                                            Action
-                                                            <i class="ace-icon fa fa-angle-down icon-on-right"></i>
-                                                        </button>
-                                                        <ul class="dropdown-menu dropdown-danger">
-                                                            <li>
-                                                                <a href="<?= 'edit.php?nis=' . $r['nis'] ?>">Edit</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="<?= 'back.php?nis=' . $r['nis'] ?>">Keluar</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div><!-- /.btn-group -->
+                                                    <?php if ($level_user === 'admin') { ?>
+                                                        <div class="btn-group">
+                                                            <button data-toggle="dropdown" class="btn btn-minier btn-primary dropdown-toggle">
+                                                                Action
+                                                                <i class="ace-icon fa fa-angle-down icon-on-right"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-danger">
+                                                                <li>
+                                                                    <a href="<?= 'edit.php?nis=' . $r['nis'] ?>">Edit</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="<?= 'back.php?nis=' . $r['nis'] ?>">Keluar</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    <?php } ?>
                                                     <!-- <a href="<?= 'edit.php?nis=' . $r['nis'] ?>"><button class="btn btn-primary btn-minier"><i class="fa fa-edit"></i></button></a> -->
                                                     <!-- <a href="<?= 'back.php?nis=' . $r['nis'] ?>"><button class="btn btn-danger btn-minier"><i class="fa fa-times"></i></button></a> -->
                                                 </td>
