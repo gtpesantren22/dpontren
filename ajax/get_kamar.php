@@ -1,5 +1,5 @@
 <?php
-include '../func.php';
+include '../fungsi.php';
 $komplek = $_POST['komplek'];
 
 echo "<option value=''>Pilih kamar</option>";

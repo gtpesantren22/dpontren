@@ -1,6 +1,6 @@
 <?php
 
-include 'func.php';
+include 'fungsi.php';
 
 $kd = $_GET['kd'];
 $id = $_GET['id'];
@@ -95,6 +95,42 @@ if ($kd == 'sts') {
         echo "
             <script>
                 window.location = 'status.php' ;
+            </script>
+        ";
+    }
+}
+
+if ($kd == 'lmrd') {
+    $dt = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM lemari_data WHERE id_ldata = '$id' "));
+    $kamar = $dt['kamar'];
+
+    $sql = mysqli_query($conn, "DELETE FROM lemari_data WHERE kamar = '$kamar' ");
+    if ($sql) {
+        echo "
+            <script>
+                window.location = 'lemari.php' ;
+            </script>
+        ";
+    }
+}
+
+if ($kd == 'lmrd_s') {
+    $sql = mysqli_query($conn, "DELETE FROM lemari_data WHERE id_ldata = '$id' ");
+    if ($sql) {
+        echo "
+            <script>
+                window.location = 'lemari.php' ;
+            </script>
+        ";
+    }
+}
+
+if ($kd == 'wli') {
+    $sql = mysqli_query($conn, "DELETE FROM wali_asuh WHERE id_wali = '$id' ");
+    if ($sql) {
+        echo "
+            <script>
+                window.location = 'wali_asuh.php' ;
             </script>
         ";
     }

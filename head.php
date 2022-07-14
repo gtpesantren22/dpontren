@@ -30,6 +30,8 @@ $nama_user = $_SESSION['nama'];
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" /> -->
 
     <!-- page specific plugin styles -->
+    <link rel="stylesheet" href="assets/css/jquery-ui.custom.min.css" />
+    <link rel="stylesheet" href="assets/css/chosen.min.css" />
 
     <!-- text fonts -->
     <link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
@@ -448,7 +450,6 @@ $nama_user = $_SESSION['nama'];
 
                     <ul class="submenu">
 
-
                         <li class="">
                             <a href="s_aktif.php">
                                 <i class="menu-icon fa fa-caret-right"></i>
@@ -470,6 +471,14 @@ $nama_user = $_SESSION['nama'];
                             <a href="tarik.php">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 Tarik Data (PSB)
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="wali_asuh.php">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Wali Asuh
                             </a>
 
                             <b class="arrow"></b>
@@ -555,6 +564,14 @@ $nama_user = $_SESSION['nama'];
                             <a href="kamar.php">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 Kamar
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="lemari.php">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Lemari Data
                             </a>
 
                             <b class="arrow"></b>
