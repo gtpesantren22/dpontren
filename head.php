@@ -20,6 +20,7 @@ $level_user = $_SESSION['level'];
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
+    <link rel="icon" href="assets/images/dpontren-ico-wh.png">
     <title>DPONTREN - PPDWK @22</title>
 
     <meta name="description" content="overview &amp; stats" />
