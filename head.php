@@ -64,7 +64,7 @@ $level_user = $_SESSION['level'];
 </head>
 
 <body class="no-skin">
-    <div id="navbar" class="navbar navbar-default          ace-save-state">
+    <div id="navbar" class="navbar navbar-default ace-save-state">
         <div class="navbar-container ace-save-state" id="navbar-container">
             <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
                 <span class="sr-only">Toggle sidebar</span>
@@ -77,10 +77,10 @@ $level_user = $_SESSION['level'];
             </button>
 
             <div class="navbar-header pull-left">
-                <a href="index.html" class="navbar-brand">
+                <a href="index.php" class="navbar-brand">
                     <small>
-                        <i class="fa fa-leaf"></i>
-                        D'PONTREN
+                        <img src="assets/images/dpontren-ico-wh.png" alt="logo" height="25px">
+                        &nbsp;D'PONTREN
                     </small>
                 </a>
             </div>

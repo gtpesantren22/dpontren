@@ -5,6 +5,7 @@
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta charset="utf-8" />
+	<link rel="icon" href="assets/images/dpontren-ico-wh.png">
 	<title>Login - D'PONTREN</title>
 
 	<meta name="description" content="User login page" />
@@ -45,13 +46,12 @@
 					<div class="login-container">
 						<div class="center">
 							<h1>
-								<i class="ace-icon fa fa-leaf green"></i>
-								<span class="white" id="id-text2">D'PONTREN</span>
+								<img src="assets/images/d'pontren.v2-wh.png" alt="" srcset="" height="150">
 							</h1>
-							<h4 class="blue" id="id-company-text">&copy; PP Darul Lughah Wal Karomah</h4>
+							<!-- <h4 class="blue" id="id-company-text">&copy; PP Darul Lughah Wal Karomah</h4> -->
 						</div>
 
-						<div class="space-6"></div>
+						<!-- <div class="space-6"></div> -->
 
 						<div class="position-relative">
 							<div id="login-box" class="login-box visible widget-box no-border">
