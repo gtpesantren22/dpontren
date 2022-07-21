@@ -52,34 +52,40 @@ include 'head.php';
 
                             <!-- div.table-responsive -->
                             <div class="row">
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <div class="table-responsive">
                                         <table id="dynamic-table" class="table table-striped table-bordered table-hover">
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
                                                     <th>Sinkronisasi ke</th>
-                                                    <th>Data yang sinkron</th>
+                                                    <th>Data sinkron</th>
                                                     <th>Terakhir sinkron</th>
-                                                    <th>Jumlah sinkron</th>
+                                                    <th>Jml sinkron</th>
+                                                    <th>#</th>
                                                 </tr>
                                             </thead>
 
                                             <tbody>
                                                 <?php
                                                 $no = 1;
-                                                $sql = mysqli_query($conn, "SELECT *, COUNT(*) AS jml FROM snkr GROUP BY tujuan");
+                                                $sql = mysqli_query($conn, "SELECT * FROM snkr_daftar");
                                                 while ($r = mysqli_fetch_assoc($sql)) {
-                                                    $tj = $r['tujuan'];
-                                                    $dt = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM snkr WHERE tujuan = '$tj' ORDER BY id_snkr DESC LIMIT 1"));
+                                                    $dbs = $r['namadb'];
+                                                    $tbl = $r['namatbl'];
+                                                    $akhir = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM snkr WHERE tujuan = '$dbs' AND data = '$tbl' ORDER BY id_snkr DESC LIMIT 1"));
+                                                    $jml = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM snkr WHERE tujuan = '$dbs' AND data = '$tbl' "));
+                                                    $sncc = 'snc.php?tj=' . $dbs . '&data=' . $tbl;
                                                 ?>
                                                     <tr>
                                                         <td><?= $no++ ?></td>
-                                                        <td>Aplikasi <?= $dt['tujuan'] ?></td>
-                                                        <td>Data <?= $dt['data'] ?></td>
-                                                        <td><?= $dt['akhir'] ?></td>
-                                                        <td><?= $r['jml'] ?> kali</td>
-
+                                                        <td>Aplikasi <?= $r['namadb'] ?></td>
+                                                        <td>Data <?= $r['namatbl'] ?></td>
+                                                        <td><?= $akhir['akhir'] ?></td>
+                                                        <td><?= $jml ?> kali</td>
+                                                        <td>
+                                                            <a href="<?= $sncc; ?>" class="btn btn-minier btn-danger" onclick="return confirm('Yakin akan disinkron ulang ?')"><i class="fa fa-refresh"></i> Sinkron ulang</a>
+                                                        </td>
                                                     </tr>
                                                 <?php } ?>
                                             </tbody>
@@ -87,7 +93,7 @@ include 'head.php';
                                     </div>
                                 </div>
 
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                     <div class="widget-box">
                                         <div class="widget-header">
                                             <h4 class="widget-title">Input Data Data Baru</h4>
@@ -105,8 +111,8 @@ include 'head.php';
 
                                         <div class="widget-body">
                                             <div class="widget-main">
-                                                <form action="snc.php" method="post">
-                                                    <div class="form-group">
+                                                <form action="" method="post">
+                                                    <!-- <div class="form-group">
                                                         <label for="">Aplikasi Tujuan</label>
                                                         <select name="tujuan" id="" class="form-control" required>
                                                             <option value="">- pilih aplikasi tujuan -</option>
@@ -123,9 +129,17 @@ include 'head.php';
                                                             <option value="tb_santri">Data Santri</option>
                                                             <option value="status">Data Status</option>
                                                         </select>
+                                                    </div> -->
+                                                    <div class="form-group">
+                                                        <label for="">Nama Database</label>
+                                                        <input type="text" name="namadb" class="form-control" required>
                                                     </div>
                                                     <div class="form-group">
-                                                        <button class="btn btn-success" type="submit"><i class="fa fa-refresh"></i> Proses Sinkron!</button>
+                                                        <label for="">Nama Table</label>
+                                                        <input type="text" name="namatbl" class="form-control" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <button class="btn btn-success btn-sm" type="submit" name="simpan"><i class="fa fa-check"></i> Simpan</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -148,15 +162,15 @@ include 'head.php';
 <?php
 include 'foot.php';
 
-if (isset($_POST['save'])) {
-    $nama = htmlspecialchars(strtoupper(mysqli_real_escape_string($conn, $_POST['nama'])));
-    $tahun = htmlspecialchars(mysqli_real_escape_string($conn, $_POST['tahun']));
+if (isset($_POST['simpan'])) {
+    $namadb = htmlspecialchars(mysqli_real_escape_string($conn, $_POST['namadb']));
+    $namatbl = htmlspecialchars(mysqli_real_escape_string($conn, $_POST['namatbl']));
 
-    $sql = mysqli_query($conn, "INSERT INTO rombel VALUES ('', '$nama', '$tahun') ");
+    $sql = mysqli_query($conn, "INSERT INTO snkr_daftar VALUES ('', '$namadb', '$namatbl') ");
     if ($sql) {
         echo "
             <script>
-                window.location = 'rombel.php' ;
+                window.location = 'snkr.php' ;
             </script>
         ";
     }

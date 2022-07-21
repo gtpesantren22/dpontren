@@ -1,7 +1,7 @@
 <?php
 
-$tj = $_POST['tujuan'];
-$data = $_POST['data'];
+$tj = $_GET['tj'];
+$data = $_GET['data'];
 $tgl = date('d-m-Y H:i');
 
 
