@@ -3,8 +3,8 @@ require "Excel.class.php";
 
 #koneksi ke mysql
 //$mysqli = new mysqli("localhost", "root", "", "psb21");
-$mysqli = mysqli_connect("localhost", "root", "", "db_santri");
-// $mysqli = mysqli_connect("localhost", "u9048253_dwk", "PesantrenDWKIT2021", "u9048253_santri");
+// $mysqli = mysqli_connect("localhost", "root", "", "db_santri");
+$mysqli = mysqli_connect("localhost", "u9048253_dwk", "PesantrenDWKIT2021", "u9048253_santri");
 
 if ($mysqli->connect_error) {
 	die('Connect Error (' . $mysqli->connect_error . ') ');
