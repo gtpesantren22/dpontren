@@ -48,6 +48,7 @@ include 'head.php';
 
                             <div class="table-header">
                                 Data santri yang masih aktif di pesantren
+                                <a href="excel1.php" target="_blank" class="btn btn-success btn-sm pull-right"><i class="fa fa-download"></i> Export to Excel</a>
                             </div>
 
                             <!-- div.table-responsive -->

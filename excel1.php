@@ -3,8 +3,8 @@ require "Excel.class.php";
 
 #koneksi ke mysql
 //$mysqli = new mysqli("localhost", "root", "", "psb21");
-//$mysqli = new mysqli("localhost", "root", "", "db_new");
-$mysqli = mysqli_connect("localhost", "u9048253_dwk", "PesantrenDWKIT2021", "u9048253_santri");
+$mysqli = mysqli_connect("localhost", "root", "", "db_santri");
+// $mysqli = mysqli_connect("localhost", "u9048253_dwk", "PesantrenDWKIT2021", "u9048253_santri");
 
 if ($mysqli->connect_error) {
 	die('Connect Error (' . $mysqli->connect_error . ') ');
@@ -12,7 +12,7 @@ if ($mysqli->connect_error) {
 #akhir koneksi
 
 #ambil data
-$query = "SELECT id, nis, nik, no_kk, nama, tempat, tanggal, jkl, desa, kec, kab, prov, k_formal, t_formal, 
+$query = "SELECT id_santri, nis, nik, no_kk, nama, tempat, tanggal, jkl, desa, kec, kab, prov, k_formal, t_formal, 
 k_madin, r_madin, komplek, kamar, bapak, ibu, hp, pass, foto, stts, t_kos, ket FROM tb_santri WHERE aktif = 'Y' AND stts != '' ORDER BY kamar,komplek";
 
 $sql = $mysqli->query($query);
@@ -24,7 +24,7 @@ while ($row = $sql->fetch_assoc()) {
 
 $excel = new Excel();
 #Send Header
-$excel->setHeader('Data Satri Baru 2021.xls');
+$excel->setHeader('Data Satri.xls');
 #$excel->EX();
 $excel->BOF();
 
