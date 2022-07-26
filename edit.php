@@ -737,7 +737,7 @@ $thn_w = $splitw[2];
                                         </div>
                                         <div class="form-group">
                                             <label>Password</label>
-                                            <input type="text" name="pass" class="form-control" placeholder="" value="<?= $r['wali']; ?>">
+                                            <input type="text" name="pass" class="form-control" placeholder="" value="<?= $r['pass']; ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>Foto</label><br>
@@ -1044,6 +1044,7 @@ if (isset($_POST['tab6'])) {
     $t_kos = mysqli_escape_string($conn, $_POST['t_kos']);
     $ket = mysqli_escape_string($conn, $_POST['ket']);
     $stts = mysqli_escape_string($conn, $_POST['stts']);
+    $pass = mysqli_escape_string($conn, $_POST['pass']);
     $foto = $_FILES['foto']['name'];
 
     if (empty($foto)) {
@@ -1055,7 +1056,7 @@ if (isset($_POST['tab6'])) {
         move_uploaded_file($tmp, 'images/santri/' . $nm_foto);
     }
 
-    $sql = mysqli_query($conn, "UPDATE tb_santri SET hp = '$hp', foto = '$nm_foto', t_kos = '$t_kos',  ket = '$ket', stts = '$stts' WHERE nis = '$nis' ");
+    $sql = mysqli_query($conn, "UPDATE tb_santri SET hp = '$hp', foto = '$nm_foto', t_kos = '$t_kos',  ket = '$ket', pass = '$pass' , stts = '$stts' WHERE nis = '$nis' ");
 
     if ($sql) {
         echo "
