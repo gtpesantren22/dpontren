@@ -585,6 +585,14 @@ $level_user = $_SESSION['level'];
                 </li>
                 <?php if ($level_user === 'admin') { ?>
                     <li class="">
+                        <a href="mutasi.php">
+                            <i class="menu-icon fa fa-bolt"></i>
+                            <span class="menu-text"> Mutasi Santri </span>
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="">
                         <a href="status.php">
                             <i class="menu-icon fa fa-list-alt"></i>
                             <span class="menu-text"> Status Santri </span>

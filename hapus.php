@@ -135,3 +135,18 @@ if ($kd == 'wli') {
         ";
     }
 }
+
+if ($kd == 'mts') {
+    $dt = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM mutasi WHERE id_mutasi = '$id' "));
+    $nis = $dt['nis'];
+
+    $sql = mysqli_query($conn, "UPDATE tb_santri SET aktif = 'T', pass = '' WHERE nis = '$nis' ");
+    if ($sql) {
+        echo "
+            <script>
+                alert('Santri sudah dikeluarkan');
+                window.location = 'mutasi.php' ;
+            </script>
+        ";
+    }
+}
