@@ -13,7 +13,7 @@ if ($mysqli->connect_error) {
 
 #ambil data
 $query = "SELECT id_santri, nis, nik, no_kk, nama, tempat, tanggal, jkl, desa, kec, kab, prov, k_formal, t_formal, 
-k_madin, r_madin, komplek, kamar, bapak, ibu, hp, pass, foto, stts, t_kos, ket FROM tb_santri WHERE aktif = 'Y' AND stts != '' ORDER BY kamar,komplek";
+k_madin, r_madin, komplek, kamar, bapak, ibu, hp, pass, foto, stts, t_kos, ket FROM tb_santri WHERE aktif = 'Y' ORDER BY t_formal";
 
 $sql = $mysqli->query($query);
 $arrmhs = array();
