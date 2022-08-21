@@ -747,20 +747,13 @@ $thn_w = $splitw[2];
                                         <div class="form-group">
                                             <label>Tempat Kos</label>
                                             <select name="t_kos" id="" class="form-control" required>
+                                                <option value="">Pilih Tempat Kos</option>
                                                 <?php
-                                                $ts = $r['t_kos'];
-                                                $tks = ["-", "Ny. Jamilah", "Gus Zaini", "Ny. Farihah", "Ny. Zahro", "Ny. Sa'adah", "Ny. Mamjudah", "Ny. Nely", "Ny. Lathifah"];
+                                                $sq = mysqli_query($conn, "SELECT * FROM tempat");
+                                                while ($kl = mysqli_fetch_assoc($sq)) {
                                                 ?>
-                                                <option value="<?= $ts; ?>"><?= $tks[$ts]; ?></option>
-                                                <option value="">---------------</option>
-                                                <option value="1"> Kantin </option>
-                                                <option value="2"> Gus Zaini </option>
-                                                <option value="3"> Ny. Farihah </option>
-                                                <option value="4"> Ny. Zahro </option>
-                                                <option value="5"> Ny. Sa'adah </option>
-                                                <option value="6"> Ny. Mamjudah</option>
-                                                <option value="7"> Ny. Nely</option>
-                                                <option value="8"> Ny. Lathifa</option>
+                                                    <option <?= $kl['kd_tmp'] == $r['t_kos'] ? 'selected' : ''; ?> value="<?= $kl['kd_tmp']; ?>"><?= $kl['nama']; ?></option>
+                                                <?php } ?>
                                             </select>
                                         </div>
                                     </div>
