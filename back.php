@@ -4,7 +4,7 @@ include 'fungsi.php';
 
 $nis = $_GET['nis'];
 
-$sql = mysqli_query($conn, "UPDATE tb_santri SET aktif = 'T' WHERE nis = '$nis' ");
+$sql = mysqli_query($conn, "UPDATE tb_santri SET aktif = 'Y' WHERE nis = '$nis' ");
 
 if ($sql) {
     echo "
@@ -17,7 +17,7 @@ if ($sql) {
     echo "
         <script>
             alert('Gagal dipindah');
-            window.location = 's_aktif.php';
+            window.location = 's_no.php';
         </script>
     ";
 }
