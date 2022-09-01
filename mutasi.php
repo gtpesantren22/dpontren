@@ -89,7 +89,6 @@ include 'head.php';
                                                         <td>
                                                             <?php if ($dt['status'] == 0) { ?>
 
-
                                                             <?php } elseif ($dt['status'] == 1) { ?>
                                                             <?php } elseif ($dt['status'] == 2) { ?>
                                                                 <a class="btn btn-danger btn-minier" onclick="return confirm('Yakin akan dikeluarkan ?')" href="<?= 'hapus.php?kd=mts&id=' . $dt['id_mutasi']; ?>"><i class="fa fa-trash"></i> keluarkan</a>
