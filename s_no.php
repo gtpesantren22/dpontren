@@ -82,7 +82,7 @@ include 'head.php';
                                                 <td>
                                                     <?php if ($level_user === 'admin') { ?>
                                                         <a href="<?= 'edit.php?nis=' . $r['nis'] ?>"><button class="btn btn-primary btn-minier"><i class="fa fa-edit"></i></button></a>
-                                                        <a href="<?= 'back.php?nis=' . $r['nis'] ?>"><button class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></a>
+                                                        <a href="<?= 'back.php?nis=' . $r['nis'] ?>"><button class="btn btn-danger btn-minier"><i class="fa fa-times"></i></button></a>
                                                     <?php } ?>
                                                 </td>
                                             </tr>
