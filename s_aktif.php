@@ -49,6 +49,7 @@ include 'head.php';
                             <div class="table-header">
                                 Data santri yang masih aktif di pesantren
                                 <a href="excel1.php" target="_blank" class="btn btn-success btn-sm pull-right"><i class="fa fa-download"></i> Export to Excel</a>
+                                <button class="btn btn-warning btn-sm pull-right" data-toggle="modal" data-target="#exampleModal"><i class=" fa fa-plus"></i> Tambah data baru</button>
                             </div>
 
                             <!-- div.table-responsive -->
@@ -114,7 +115,56 @@ include 'head.php';
         </div><!-- /.page-content -->
     </div>
 </div><!-- /.main-content -->
-
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data santri
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="">Masukan NIS</label>
+                        <input type="number" name="nis" class="form-control" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" name="simpan" class="btn btn-primary">Simpan Data Baru</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <?php
 include 'foot.php';
+
+if (isset($_POST['simpan'])) {
+    $nis = $_POST['nis'];
+
+    $cek = mysqli_query($conn, "SELECT * FROM tb_santri WHERE nis = '$nis' ");
+
+    if (mysqli_num_rows($cek) > 0) {
+        echo "
+        <script>
+            alert('Maaf. NIS sudah terpakai');
+            window.location = 's_aktif.php';
+        </script>
+        ";
+    } else {
+        $sql = mysqli_query($conn, "INSERT INTO tb_santri (nis, aktif) VALUES ('$nis', 'Y') ");
+        if ($sql) {
+            echo "
+        <script>
+            alert('Data sudah masuk');
+            window.location = 'edit.php?nis=" . $nis . "';
+        </script>
+        ";
+        }
+    }
+}
 ?>
