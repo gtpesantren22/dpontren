@@ -325,9 +325,14 @@ if (isset($_POST['masuk'])) {
 		$dt = mysqli_fetch_assoc($sql);
 		if ($dt['aktif'] === 'Y') {
 			if (password_verify($pass, $dt['password'])) {
+
 				$_SESSION['04bb9374-8e84-48c8-b858-cfaa2087b56f'] = true;
 				$_SESSION['nama']  = $dt['nama'];
 				$_SESSION['level']  = $dt['level'];
+
+				$agent = @$_SERVER['HTTP_USER_AGENT'];
+				$ip = @$_SERVER['REMOTE_ADDR'];
+				mysqli_query($conn, "INSERT INTO user_log(no_daftar,ip,agent,waktu) VALUES('','$ip','$agent',now())");
 
 				echo "
                 <script>
