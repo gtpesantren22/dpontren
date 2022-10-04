@@ -332,7 +332,9 @@ if (isset($_POST['masuk'])) {
 
 				$agent = @$_SERVER['HTTP_USER_AGENT'];
 				$ip = @$_SERVER['REMOTE_ADDR'];
-				mysqli_query($conn, "INSERT INTO user_log(no_daftar,ip,agent,waktu) VALUES('','$ip','$agent',now())");
+				$nod = $dt['nama'] . ', ' . $dt['level'] . ', ' . $dt['username'];
+
+				mysqli_query($conn, "INSERT INTO user_log(no_daftar,ip,agent,waktu) VALUES('$nod','$ip','$agent',now())");
 
 				echo "
                 <script>
