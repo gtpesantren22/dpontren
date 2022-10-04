@@ -325,7 +325,7 @@ if (isset($_POST['masuk'])) {
 		$dt = mysqli_fetch_assoc($sql);
 		if ($dt['aktif'] === 'Y') {
 			if (password_verify($pass, $dt['password'])) {
-				$_SESSION['qwertyuiop1234567890'] = true;
+				$_SESSION['04bb9374-8e84-48c8-b858-cfaa2087b56f'] = true;
 				$_SESSION['nama']  = $dt['nama'];
 				$_SESSION['level']  = $dt['level'];
 

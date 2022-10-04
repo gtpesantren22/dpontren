@@ -2,7 +2,7 @@
 session_start();
 include 'fungsi.php';
 
-if (!isset($_SESSION['qwertyuiop1234567890'])) {
+if (!isset($_SESSION['04bb9374-8e84-48c8-b858-cfaa2087b56f'])) {
     echo "
     <script>
     alert('Silahkan login dulu');
