@@ -93,7 +93,7 @@ include 'head.php';
                                                                     <a href="<?= 'edit.php?nis=' . $r['nis'] ?>">Edit</a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="<?= 'back.php?nis=' . $r['nis'] ?>">Keluar</a>
+                                                                    <a href="<?= 'hapus.php?kd=mti&id=' . $r['nis'] ?>">Keluar</a>
                                                                 </li>
                                                             </ul>
                                                         </div>

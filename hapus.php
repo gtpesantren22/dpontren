@@ -182,3 +182,23 @@ Terimakasih';
         ";
     }
 }
+
+if ($kd == 'mti') {
+    $sql = mysqli_query($conn, "UPDATE tb_santri SET aktif = 'T' WHERE nis = '$id' ");
+
+    if ($sql) {
+        echo "
+        <script>
+            alert('Data sudah dipindah');
+            window.location = 's_aktif.php';
+        </script>
+        ";
+    } else {
+        echo "
+        <script>
+            alert('Gagal dipindah');
+            window.location = 's_no.php';
+        </script>
+    ";
+    }
+}
