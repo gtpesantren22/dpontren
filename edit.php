@@ -1085,3 +1085,96 @@ if (isset($_POST['tab6'])) {
 
 
 ?>
+
+<!-- inline scripts related to this page -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $.ajax({
+            type: 'POST',
+            url: "ajax/get_provinsi.php",
+            cache: false,
+            success: function(msg) {
+                $("#provinsi").html(msg);
+            }
+        });
+
+        $("#provinsi").change(function() {
+            var provinsi = $("#provinsi").val();
+            $.ajax({
+                type: 'POST',
+                url: "ajax/get_kabupaten.php",
+                data: {
+                    provinsi: provinsi
+                },
+                cache: false,
+                success: function(msg) {
+                    $("#kabupaten").html(msg);
+                }
+            });
+        });
+
+        $("#kabupaten").change(function() {
+            var kabupaten = $("#kabupaten").val();
+            $.ajax({
+                type: 'POST',
+                url: "ajax/get_kecamatan.php",
+                data: {
+                    kabupaten: kabupaten
+                },
+                cache: false,
+                success: function(msg) {
+                    $("#kecamatan").html(msg);
+                }
+            });
+        });
+
+        $("#kecamatan").change(function() {
+            var kecamatan = $("#kecamatan").val();
+            $.ajax({
+                type: 'POST',
+                url: "ajax/get_kelurahan.php",
+                data: {
+                    kecamatan: kecamatan
+                },
+                cache: false,
+                success: function(msg) {
+                    $("#kelurahan").html(msg);
+                }
+            });
+        });
+
+        $("#t_formal").change(function() {
+            var t_formal = $("#t_formal").val();
+            $.ajax({
+                type: 'POST',
+                url: "ajax/get_kelas.php",
+                data: {
+                    t_formal: t_formal
+                },
+                cache: false,
+                success: function(msg) {
+                    $("#k_formal").html(msg);
+                }
+            });
+        });
+
+        $("#komplek").change(function() {
+            var komplek = $("#komplek").val();
+            $.ajax({
+                type: 'POST',
+                url: "ajax/get_kamar.php",
+                data: {
+                    komplek: komplek
+                },
+                cache: false,
+                success: function(msg) {
+                    $("#kmr").html(msg);
+                }
+            });
+        });
+    });
+
+
+
+        
+</script>
