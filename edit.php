@@ -307,13 +307,6 @@ $thn_w = $splitw[2];
                                                     <label>Provinsi *<b><i>(<?= $r['prov']; ?>)</i></b></label>
                                                     <select name="prop" id="provinsi" class="form-control ">
                                                         <option value="">Pilih Provinsi</option>
-                                                        <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM provinsi");
-                                                        while ($kl = mysqli_fetch_assoc($sq)) {
-                                                        ?>
-                                                            <option value="<?= $kl['id_prov'] ?>"><?= $kl['nama'] ?>
-                                                            </option>
-                                                        <?php } ?>
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-6">
