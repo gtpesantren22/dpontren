@@ -68,8 +68,18 @@ $dt1 = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM kamar WHERE jkl = '
                                             <tbody>
                                                 <?php
                                                 $no = 1;
-                                                $qr = mysqli_query($conn, "SELECT * FROM kamar ");
+                                                $qr = mysqli_query($conn, "SELECT * FROM kamar WHERE jkl = 'putra' ORDER BY nama ASC ");
+                                                $qr2 = mysqli_query($conn, "SELECT * FROM kamar WHERE jkl = 'putri' ORDER BY nama ASC ");
                                                 while ($rr = mysqli_fetch_assoc($qr)) { ?>
+                                                    <tr>
+                                                        <td><?= $no++; ?></td>
+                                                        <td><?= $rr['nama']; ?></td>
+                                                        <td><?= $rr['komplek']; ?></td>
+                                                        <td><a href="<?= 'hapus.php?kd=kmr&id=' . $rr['id_kamar'] ?>" onclick="return confirm('Yakiin akan dihapus ?')"><button class="btn btn-danger btn-minier"><i class="fa fa-trash"></i> Dele</button></a></td>
+
+                                                    </tr>
+                                                <?php }
+                                                while ($rr = mysqli_fetch_assoc($qr2)) { ?>
                                                     <tr>
                                                         <td><?= $no++; ?></td>
                                                         <td><?= $rr['nama']; ?></td>
