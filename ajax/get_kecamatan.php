@@ -1,5 +1,5 @@
 <?php
-include '../func.php';
+include '../fungsi.php';
 $kabupaten = $_POST['kabupaten'];
 
 echo "<option value=''>Pilih Kecamatan</option>";

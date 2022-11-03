@@ -1,5 +1,5 @@
 <?php
-include '../func.php';
+include '../fungsi.php';
 $t_formal = $_POST['t_formal'];
 
 echo "<option value=''>Pilih Kelas</option>";

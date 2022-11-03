@@ -1,5 +1,5 @@
 <?php
-include '../func.php';
+include '../fungsi.php';
 
 echo "<option value=''>Pilih Provinsi</option>";
 
