@@ -74,7 +74,7 @@ $dt1 = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM kamar WHERE jkl = '
                                                         <td><?= $no++; ?></td>
                                                         <td><?= $rr['nama']; ?></td>
                                                         <td><?= $rr['komplek']; ?></td>
-                                                        <td><a href="<?= 'hapus.php?kd=kmr&id' . $rr['id_kamar'] ?>" onclick="return confirm('Yakiin akan dihapus ?')"><button class="btn btn-danger btn-minier"><i class="fa fa-trash"></i> Dele</button></a></td>
+                                                        <td><a href="<?= 'hapus.php?kd=kmr&id=' . $rr['id_kamar'] ?>" onclick="return confirm('Yakiin akan dihapus ?')"><button class="btn btn-danger btn-minier"><i class="fa fa-trash"></i> Dele</button></a></td>
 
                                                     </tr>
                                                 <?php } ?>
