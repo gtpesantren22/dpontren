@@ -6,7 +6,7 @@ include 'fungsi.php';
 $nis = $_GET['nis'];
 $r = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM tb_santri WHERE nis = '$nis' "));
 
-$jklOk = $r['jkl'];
+$jklOk = $r['jkl'] === 'Laki-laki' ? 'putra' : 'putri';
 
 $bln = array(
     "", "Januari", "Februari", "Maret", "April", "Mei",
