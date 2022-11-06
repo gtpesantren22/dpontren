@@ -6,6 +6,8 @@ include 'fungsi.php';
 $nis = $_GET['nis'];
 $r = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM tb_santri WHERE nis = '$nis' "));
 
+$jklOk = $r['jkl'];
+
 $bln = array(
     "", "Januari", "Februari", "Maret", "April", "Mei",
     "Juni", "Juli", "Agustus", "September", "Oktober",
@@ -259,14 +261,14 @@ $thn_w = $splitw[2];
                                                 <label>Jenis Kelamin *</label>
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" class="ace" name="jkl" value="Laki-laki" <?= $r['jkl'] == 'Laki-laki' ? 'checked' : ''; ?> required />
+                                                        <input type="radio" class="ace" name="jkl" value="Laki-laki" <?= $jklOk == 'Laki-laki' ? 'checked' : ''; ?> required />
                                                         <span class="lbl"> Laki-laki</span>
 
                                                     </label>
                                                 </div>
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" class="ace" name="jkl" value="Perempuan" <?= $r['jkl'] == 'Perempuan' ? 'checked' : ''; ?> required />
+                                                        <input type="radio" class="ace" name="jkl" value="Perempuan" <?= $jklOk == 'Perempuan' ? 'checked' : ''; ?> required />
                                                         <span class="lbl"> Perempuan</span>
                                                     </label>
                                                 </div>
@@ -580,7 +582,7 @@ $thn_w = $splitw[2];
                                         <select name="komplek" id="komplek" class="form-control" required>
                                             <option value="">Pilih komplek</option>
                                             <?php
-                                            $jk = $r['jkl'];
+                                            $jk = $jklOk;
                                             $sq = mysqli_query($conn, "SELECT komplek FROM kamar WHERE jkl = '$jk' GROUP BY komplek");
                                             while ($kl = mysqli_fetch_assoc($sq)) {
                                             ?>
@@ -594,7 +596,7 @@ $thn_w = $splitw[2];
                                         <select name="kamar" id="komplek" class="form-control" required>
                                             <option value="">Pilih Kamar</option>
                                             <?php
-                                            $jk = $r['jkl'];
+                                            $jk = $jklOk;
                                             $sq = mysqli_query($conn, "SELECT * FROM kamar WHERE jkl = '$jk'");
                                             while ($kl = mysqli_fetch_assoc($sq)) {
                                             ?>
