@@ -151,7 +151,7 @@ Nama : ' . $dts['nama'] . '
 Alamat : ' . $dts['desa'] . '-' . $dts['kec'] . '-' . $dts['kab'] . '
 Sekolah : ' . $dts['t_formal'] . '
 
-*_Data telah dikeluarkan dari DPontren. Selesai_*
+*_Data telah dikeluarkan dari DPontren. Dimohon kepada lembaga untuk membuat surat mutasi dan dikeluarkan dari Emis/Dapodik_*
 Terimakasih';
 
     if ($sql) {
