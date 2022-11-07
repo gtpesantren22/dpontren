@@ -261,14 +261,14 @@ $thn_w = $splitw[2];
                                                 <label>Jenis Kelamin *</label>
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" class="ace" name="jkl" value="Laki-laki" <?= $jklOk == 'Laki-laki' ? 'checked' : ''; ?> required />
+                                                        <input type="radio" class="ace" name="jkl" value="Laki-laki" <?= $r['jkl'] == 'Laki-laki' ? 'checked' : ''; ?> required />
                                                         <span class="lbl"> Laki-laki</span>
 
                                                     </label>
                                                 </div>
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" class="ace" name="jkl" value="Perempuan" <?= $jklOk == 'Perempuan' ? 'checked' : ''; ?> required />
+                                                        <input type="radio" class="ace" name="jkl" value="Perempuan" <?= $r['jkl'] == 'Perempuan' ? 'checked' : ''; ?> required />
                                                         <span class="lbl"> Perempuan</span>
                                                     </label>
                                                 </div>
