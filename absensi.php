@@ -83,7 +83,16 @@ include 'head.php';
                                             <td>
                                                 <?php
                                                     while ($lm = mysqli_fetch_assoc($sqlr)) {
-                                                        echo "<span class='badge badge-info'>" . $lm['lembaga'] . "</span>";
+                                                        if ($lm['lembaga'] === 'MTs') {
+                                                            $warna = 'dark';
+                                                        } else if ($lm['lembaga'] === 'SMP') {
+                                                            $warna = 'success';
+                                                        } else if ($lm['lembaga'] === 'MA') {
+                                                            $warna = 'info';
+                                                        } else if ($lm['lembaga'] === 'SMK') {
+                                                            $warna = 'warning';
+                                                        }
+                                                        echo "<span class='badge badge-" . $warna . "'>" . $lm['lembaga'] . "</span>";
                                                     }
                                                     ?>
                                             </td>
