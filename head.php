@@ -171,7 +171,8 @@ $level_user = $_SESSION['level'];
                             <span class="badge badge-important">8</span>
                         </a>
 
-                        <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+                        <ul
+                            class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
                             <li class="dropdown-header">
                                 <i class="ace-icon fa fa-exclamation-triangle"></i>
                                 8 Notifications
@@ -249,7 +250,8 @@ $level_user = $_SESSION['level'];
                                 <ul class="dropdown-menu dropdown-navbar">
                                     <li>
                                         <a href="#" class="clearfix">
-                                            <img src="assets/images/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+                                            <img src="assets/images/avatars/avatar.png" class="msg-photo"
+                                                alt="Alex's Avatar" />
                                             <span class="msg-body">
                                                 <span class="msg-title">
                                                     <span class="blue">Alex:</span>
@@ -266,7 +268,8 @@ $level_user = $_SESSION['level'];
 
                                     <li>
                                         <a href="#" class="clearfix">
-                                            <img src="assets/images/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
+                                            <img src="assets/images/avatars/avatar3.png" class="msg-photo"
+                                                alt="Susan's Avatar" />
                                             <span class="msg-body">
                                                 <span class="msg-title">
                                                     <span class="blue">Susan:</span>
@@ -283,7 +286,8 @@ $level_user = $_SESSION['level'];
 
                                     <li>
                                         <a href="#" class="clearfix">
-                                            <img src="assets/images/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
+                                            <img src="assets/images/avatars/avatar4.png" class="msg-photo"
+                                                alt="Bob's Avatar" />
                                             <span class="msg-body">
                                                 <span class="msg-title">
                                                     <span class="blue">Bob:</span>
@@ -300,7 +304,8 @@ $level_user = $_SESSION['level'];
 
                                     <li>
                                         <a href="#" class="clearfix">
-                                            <img src="assets/images/avatars/avatar2.png" class="msg-photo" alt="Kate's Avatar" />
+                                            <img src="assets/images/avatars/avatar2.png" class="msg-photo"
+                                                alt="Kate's Avatar" />
                                             <span class="msg-body">
                                                 <span class="msg-title">
                                                     <span class="blue">Kate:</span>
@@ -317,7 +322,8 @@ $level_user = $_SESSION['level'];
 
                                     <li>
                                         <a href="#" class="clearfix">
-                                            <img src="assets/images/avatars/avatar5.png" class="msg-photo" alt="Fred's Avatar" />
+                                            <img src="assets/images/avatars/avatar5.png" class="msg-photo"
+                                                alt="Fred's Avatar" />
                                             <span class="msg-body">
                                                 <span class="msg-title">
                                                     <span class="blue">Fred:</span>
@@ -354,7 +360,8 @@ $level_user = $_SESSION['level'];
                             <i class="ace-icon fa fa-caret-down"></i>
                         </a>
 
-                        <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                        <ul
+                            class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                             <li>
                                 <a href="#">
                                     <i class="ace-icon fa fa-cog"></i>
@@ -386,16 +393,16 @@ $level_user = $_SESSION['level'];
 
     <div class="main-container ace-save-state" id="main-container">
         <script type="text/javascript">
-            try {
-                ace.settings.loadState('main-container')
-            } catch (e) {}
+        try {
+            ace.settings.loadState('main-container')
+        } catch (e) {}
         </script>
 
         <div id="sidebar" class="sidebar                  responsive                    ace-save-state">
             <script type="text/javascript">
-                try {
-                    ace.settings.loadState('sidebar')
-                } catch (e) {}
+            try {
+                ace.settings.loadState('sidebar')
+            } catch (e) {}
             </script>
 
             <div class="sidebar-shortcuts" id="sidebar-shortcuts">
@@ -470,14 +477,14 @@ $level_user = $_SESSION['level'];
                             <b class="arrow"></b>
                         </li>
                         <?php if ($level_user === 'admin') { ?>
-                            <li class="">
-                                <a href="tarik.php">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Tarik Data (PSB)
-                                </a>
+                        <li class="">
+                            <a href="tarik.php">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Tarik Data (PSB)
+                            </a>
 
-                                <b class="arrow"></b>
-                            </li>
+                            <b class="arrow"></b>
+                        </li>
                         <?php } ?>
                         <li class="">
                             <a href="wali_asuh.php">
@@ -490,59 +497,59 @@ $level_user = $_SESSION['level'];
                     </ul>
                 </li>
                 <?php if ($level_user === 'admin') { ?>
-                    <li class="">
-                        <a href="#" class="dropdown-toggle">
-                            <i class="menu-icon fa fa-list"></i>
-                            <span class="menu-text"> Data Kelas </span>
+                <li class="">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-list"></i>
+                        <span class="menu-text"> Data Kelas </span>
 
-                            <b class="arrow fa fa-angle-down"></b>
-                        </a>
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
 
-                        <b class="arrow"></b>
+                    <b class="arrow"></b>
 
-                        <ul class="submenu">
-                            <li class="">
-                                <a href="formal.php">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Lembaga Formal
-                                </a>
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="formal.php">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Lembaga Formal
+                            </a>
 
-                                <b class="arrow"></b>
-                            </li>
+                            <b class="arrow"></b>
+                        </li>
 
-                            <li class="">
-                                <a href="kelas.php">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Kelas Formal
-                                </a>
+                        <li class="">
+                            <a href="kelas.php">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Kelas Formal
+                            </a>
 
-                                <b class="arrow"></b>
-                            </li>
-                            <li class="">
-                                <a href="madin.php">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Kelas Madin
-                                </a>
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="madin.php">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Kelas Madin
+                            </a>
 
-                                <b class="arrow"></b>
-                            </li>
-                            <li class="">
-                                <a href="rombel.php">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Rombel
-                                </a>
-                                <b class="arrow"></b>
-                            </li>
-                            <li class="">
-                                <a href="jurusan.php">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Jurusan
-                                </a>
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="rombel.php">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Rombel
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="jurusan.php">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Jurusan
+                            </a>
 
-                                <b class="arrow"></b>
-                            </li>
-                        </ul>
-                    </li>
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
                 <?php } ?>
                 <li class="">
                     <a href="#" class="dropdown-toggle">
@@ -584,35 +591,75 @@ $level_user = $_SESSION['level'];
                     </ul>
                 </li>
                 <?php if ($level_user === 'admin') { ?>
-                    <li class="">
-                        <a href="mutasi.php">
-                            <i class="menu-icon fa fa-bolt"></i>
-                            <span class="menu-text"> Mutasi Santri </span>
-                        </a>
+                <li class="">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-cogs"></i>
+                        <span class="menu-text"> Control Data </span>
 
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="">
-                        <a href="status.php">
-                            <i class="menu-icon fa fa-list-alt"></i>
-                            <span class="menu-text"> Status Santri </span>
-                        </a>
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
 
-                        <b class="arrow"></b>
-                    </li>
+                    <b class="arrow"></b>
 
-                    <li class="">
-                        <a href="snkr.php">
-                            <i class="menu-icon ace-icon glyphicon glyphicon-refresh"></i>
-                            <span class="menu-text"> Sinkronisasi </span>
-                        </a>
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="#">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Data Sakit
+                            </a>
 
-                        <b class="arrow"></b>
-                    </li>
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="#">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Data Pulang
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="absensi.php">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Absensi
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="">
+                    <a href="mutasi.php">
+                        <i class="menu-icon fa fa-bolt"></i>
+                        <span class="menu-text"> Mutasi Santri </span>
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+                <li class="">
+                    <a href="status.php">
+                        <i class="menu-icon fa fa-list-alt"></i>
+                        <span class="menu-text"> Status Santri </span>
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="snkr.php">
+                        <i class="menu-icon ace-icon glyphicon glyphicon-refresh"></i>
+                        <span class="menu-text"> Sinkronisasi </span>
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
                 <?php } ?>
             </ul><!-- /.nav-list -->
 
             <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
-                <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+                <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state"
+                    data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
             </div>
         </div>
