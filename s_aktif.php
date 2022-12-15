@@ -64,6 +64,7 @@ include 'head.php';
                                             <th>Nama</th>
                                             <th>Alamat</th>
                                             <th>Kelas</th>
+                                            <th>Madin</th>
                                             <th>#</th>
                                         </tr>
                                     </thead>
@@ -81,6 +82,7 @@ include 'head.php';
                                                 <td><?= $r['nama'] ?></td>
                                                 <td><?= $r['desa'] . ' - ' . $r['kec'] . ' - ' . $r['kab'] ?></td>
                                                 <td><?= $r['k_formal'] . ' - ' . $r['t_formal'] ?></td>
+                                                <td><?= $r['k_madin'] . ' - ' . $r['r_madin'] ?></td>
                                                 <td>
                                                     <?php if ($level_user === 'admin') { ?>
                                                         <div class="btn-group">
