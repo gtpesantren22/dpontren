@@ -590,6 +590,54 @@ $level_user = $_SESSION['level'];
 
                     </ul>
                 </li>
+                <li class="">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-cogs"></i>
+                        <span class="menu-text"> Control Data </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+
+                    <ul class="submenu">
+                        <?php if ($level_user === 'admin') { ?>
+                        <li class="">
+                            <a href="#">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Data Sakit
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="#">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Data Pulang
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="absensi.php">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Absensi
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                        <?php } ?>
+                        <li class="">
+                            <a href="akun.php">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Kirim Akun
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
                 <?php if ($level_user === 'admin') { ?>
                 <li class="">
                     <a href="#" class="dropdown-toggle">
