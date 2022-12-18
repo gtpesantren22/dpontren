@@ -640,45 +640,6 @@ $level_user = $_SESSION['level'];
                 </li>
                 <?php if ($level_user === 'admin') { ?>
                 <li class="">
-                    <a href="#" class="dropdown-toggle">
-                        <i class="menu-icon fa fa-cogs"></i>
-                        <span class="menu-text"> Control Data </span>
-
-                        <b class="arrow fa fa-angle-down"></b>
-                    </a>
-
-                    <b class="arrow"></b>
-
-                    <ul class="submenu">
-                        <li class="">
-                            <a href="#">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Data Sakit
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="#">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Data Pulang
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-                        <li class="">
-                            <a href="absensi.php">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Absensi
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                    </ul>
-                </li>
-                <li class="">
                     <a href="mutasi.php">
                         <i class="menu-icon fa fa-bolt"></i>
                         <span class="menu-text"> Mutasi Santri </span>
