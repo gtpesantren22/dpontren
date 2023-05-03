@@ -14,7 +14,7 @@ $res = mysqli_query($conn, "SELECT * FROM log_santri a JOIN tb_santri b ON a.nis
     <title>Document</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap5.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap5.min.css">
 </head>
 
 <body>
@@ -25,7 +25,7 @@ $res = mysqli_query($conn, "SELECT * FROM log_santri a JOIN tb_santri b ON a.nis
             </div>
             <div class="card-body">
                 <h5 class="card-title">Data Logs Santri</h5>
-                <table class="table" id="">
+                <table class="table table-sm" id="example">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -62,8 +62,8 @@ $res = mysqli_query($conn, "SELECT * FROM log_santri a JOIN tb_santri b ON a.nis
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!-- <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.3/js/dataTables.bootstrap5.min.js"></script> -->
+<script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.3/js/dataTables.bootstrap5.min.js"></script>
 
 <script>
     function updateUserStatus() {
@@ -90,10 +90,13 @@ $res = mysqli_query($conn, "SELECT * FROM log_santri a JOIN tb_santri b ON a.nis
 
     setInterval(function() {
         getUserStatus();
-    }, 1000);
+    }, 2000);
 
     $(document).ready(function() {
-        $('#example').DataTable();
+        $('#example').DataTable({
+            lengthChange: false,
+            paging: false,
+        });
     });
 </script>
 

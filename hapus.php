@@ -149,7 +149,7 @@ Atas nama :
     
 Nama : ' . $dts['nama'] . '
 Alamat : ' . $dts['desa'] . '-' . $dts['kec'] . '-' . $dts['kab'] . '
-Sekolah : ' . $dts['t_formal'] . '
+Sekolah : ' . $dts['k_formal'] . ' ' . $dts['t_formal'] . '
 
 *_Data telah dikeluarkan dari DPontren. Dimohon kepada lembaga untuk membuat surat mutasi dan dikeluarkan dari Emis/Dapodik_*
 Terimakasih';
