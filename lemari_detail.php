@@ -1,8 +1,9 @@
 <?php
 include 'head.php';
 $kamar = $_GET['kd'];
+$lemari = $_GET['lmr'];
 
-$dt = mysqli_query($conn, "SELECT * FROM lemari_data WHERE kamar = '$kamar' ");
+$dt = mysqli_query($conn, "SELECT * FROM lemari_data WHERE kamar = '$kamar' AND lemari = '$lemari' ");
 ?>
 
 <div class="main-content">

@@ -91,7 +91,7 @@ $dt1 = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM kamar WHERE jkl = '
                                                                     while ($rr2 = mysqli_fetch_assoc($qr2)) {
                                                                     ?>
                                                                         <li>
-                                                                            <a href="<?= 'lemari_detail.php?kd=' . $rr2['kamar'] ?>"><?= $rr2['kamar'] ?></a>
+                                                                            <a href="<?= 'lemari_detail.php?kd=' . $rr2['kamar'] . '&lmr=' . $rr2['lemari'] ?>">Lemari <?= $rr2['lemari'] ?></a>
                                                                         </li>
                                                                     <?php } ?>
                                                                     <li>
