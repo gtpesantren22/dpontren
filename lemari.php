@@ -72,13 +72,13 @@ $dt1 = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM kamar WHERE jkl = '
                                                 $qr = mysqli_query($conn, "SELECT *, COUNT(loker) AS jml_lok, COUNT(lemari) AS jml_lm FROM lemari_data WHERE jkl = 'putra' GROUP BY kamar ");
                                                 while ($rr = mysqli_fetch_assoc($qr)) {
                                                     $kmr = $rr['kamar'];
-                                                    $qr2 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM lemari_data WHERE jkl = 'putra' AND kamar = '$kmr' GROUP BY lemari "));
+                                                    $qr2 = mysqli_query($conn, "SELECT * FROM lemari_data WHERE jkl = 'putra' AND kamar = '$kmr' GROUP BY lemari ");
                                                 ?>
                                                     <tr>
                                                         <td><?= $no++; ?></td>
                                                         <td><?= $rr['kamar']; ?></td>
                                                         <td><?= $rr['komplek']; ?></td>
-                                                        <td><?= $qr2; ?></td>
+                                                        <td><?= mysqli_num_rows($qr2); ?></td>
                                                         <td><?= $rr['jml_lok']; ?></td>
                                                         <td>
                                                             <div class="btn-group">
@@ -87,9 +87,13 @@ $dt1 = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM kamar WHERE jkl = '
                                                                     <i class="ace-icon fa fa-angle-down icon-on-right"></i>
                                                                 </button>
                                                                 <ul class="dropdown-menu dropdown-danger">
-                                                                    <li>
-                                                                        <a href="<?= 'lemari_detail.php?kd=' . $rr['kamar'] ?>">Details</a>
-                                                                    </li>
+                                                                    <?php
+                                                                    while ($rr2 = mysqli_fetch_assoc($qr2)) {
+                                                                    ?>
+                                                                        <li>
+                                                                            <a href="<?= 'lemari_detail.php?kd=' . $rr2['kamar'] ?>"><?= $rr2['kamar'] ?></a>
+                                                                        </li>
+                                                                    <?php } ?>
                                                                     <li>
                                                                         <a href="<?= 'hapus.php?kd=lmrd&id=' . $rr['id_ldata'] ?>" onclick="return confirm('Yakiin akan dihapus ?')">Hapus</a>
                                                                     </li>
