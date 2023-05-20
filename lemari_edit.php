@@ -3,7 +3,7 @@ include 'head.php';
 $id = $_GET['id'];
 $dt = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM lemari_data WHERE id_ldata = '$id' "));
 
-$link_back = 'lemari_detail.php?kd=' . $dt['kamar'];
+$link_back = 'lemari_detail.php?kd=' . $dt['kamar'] . '&lmr=' . $dt['lemari'];
 ?>
 
 <div class="main-content">

@@ -4,6 +4,7 @@ $kamar = $_GET['kd'];
 $lemari = $_GET['lmr'];
 
 $dt = mysqli_query($conn, "SELECT * FROM lemari_data WHERE kamar = '$kamar' AND lemari = '$lemari' ");
+$qr2 = mysqli_query($conn, "SELECT * FROM lemari_data WHERE jkl = 'putra' AND kamar = '$kamar' GROUP BY lemari ");
 ?>
 
 <div class="main-content">
@@ -48,7 +49,11 @@ $dt = mysqli_query($conn, "SELECT * FROM lemari_data WHERE kamar = '$kamar' AND 
                     <!-- PAGE CONTENT BEGINS -->
 
                     <div class="table-header">
-                        Detail Lemari
+                        <?php
+                        while ($rr2 = mysqli_fetch_assoc($qr2)) {
+                        ?>
+                            <a class="btn btn-xs btn-warning" href="<?= 'lemari_detail.php?kd=' . $rr2['kamar'] . '&lmr=' . $rr2['lemari'] ?>">Lemari <?= $rr2['lemari'] ?></a>
+                        <?php } ?>
                     </div>
                     <div class="table-responsive">
                         <table id="dynamic-table" class="table table-striped table-bordered table-hover">
