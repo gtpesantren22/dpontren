@@ -87,7 +87,7 @@ $link_back = 'lemari_detail.php?kd=' . $dt['kamar'];
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Pilih Wali Asuh</label>
-                                                <select name="wali" id="" class="chosen-select form-control" required>
+                                                <select name="wali" id="" class="chosen-select form-control">
                                                     <option value=""> -pilih wali asuh- </option>
                                                     <?php
                                                     $sql = mysqli_query($conn, "SELECT * FROM wali_asuh");
@@ -98,7 +98,7 @@ $link_back = 'lemari_detail.php?kd=' . $dt['kamar'];
                                             </div>
                                             <div class="form-group">
                                                 <label>Pilih Santri</label>
-                                                <select name="nis" id="" class="chosen-select2 form-control" required>
+                                                <select name="nis" id="" class="chosen-select2 form-control">
                                                     <option value=""> -pilih santri- </option>
                                                     <?php
                                                     $sql = mysqli_query($conn, "SELECT * FROM tb_santri WHERE aktif = 'Y' ");
