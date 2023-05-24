@@ -2,6 +2,7 @@
 include 'head.php';
 $kamar = $_GET['kd'];
 $lemari = $_GET['lmr'];
+$link_back = 'lemari_detail.php?kd=' . $kamar . '&lmr=' . $lemari;
 
 $dt = mysqli_query($conn, "SELECT * FROM lemari_data WHERE kamar = '$kamar' AND lemari = '$lemari' ");
 $qr2 = mysqli_query($conn, "SELECT * FROM lemari_data WHERE jkl = 'putra' AND kamar = '$kamar' GROUP BY lemari ");
@@ -75,37 +76,66 @@ $qr2 = mysqli_query($conn, "SELECT * FROM lemari_data WHERE jkl = 'putra' AND ka
                                 $no = 1;
                                 while ($rr = mysqli_fetch_assoc($dt)) {
                                     $ni = $rr['nis'];
-                                    $cek = mysqli_query($conn, "SELECT * FROM tb_santri WHERE nis = '$ni' ");
-                                    $r2  = mysqli_fetch_assoc($cek);
                                     $jmm  = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM lemari_data WHERE nis = '$ni' "));
                                     $clor = $jmm > 1 ? "style='background-color: red; color: white;'" : "";
+                                    $jkl = $rr['jkl'] === 'putra' ? 'Laki-laki' : 'Perempuan';
+                                    $sntr = mysqli_query($conn, "SELECT * FROM tb_santri WHERE aktif = 'Y' AND jkl = '$jkl' AND NOT EXISTS (SELECT * FROM lemari_data WHERE tb_santri.nis=lemari_data.nis) ");
+                                    $sndata = mysqli_fetch_assoc(mysqli_query($conn, "SELECT nama FROM tb_santri WHERE nis = '$ni' "));
+                                    $ash = mysqli_query($conn, "SELECT * FROM wali_asuh WHERE jkl = '$jkl' ");
+
                                 ?>
                                     <tr>
-                                        <td><?= $no++; ?></td>
-                                        <td><?= $rr['komplek']; ?></td>
-                                        <td><?= $rr['kamar']; ?></td>
-                                        <td><?= $rr['lemari']; ?></td>
-                                        <td><?= $rr['loker']; ?></td>
-                                        <td><?= $rr['wali']; ?></td>
-                                        <td <?= $clor; ?>><?= $r2['nama']; ?></td>
-                                        <td><?= $rr['ket']; ?></td>
-                                        <td>
-                                            <div class="btn-group">
-                                                <button data-toggle="dropdown" class="btn btn-minier btn-primary dropdown-toggle">
-                                                    Action
-                                                    <i class="ace-icon fa fa-angle-down icon-on-right"></i>
+                                        <form action="" method="post">
+                                            <td><?= $no++; ?></td>
+                                            <td><?= $rr['komplek']; ?></td>
+                                            <td><?= $rr['kamar']; ?></td>
+                                            <td><?= $rr['lemari']; ?></td>
+                                            <td><?= $rr['loker']; ?></td>
+                                            <td>
+                                                <input type="hidden" name="id" value="<?= $rr['id_ldata'] ?>">
+                                                <select name="wali" class="chosen-select2 form-control input-sm" id="">
+                                                    <!-- <option value=""><?= $rr['wali'] != '' ? $rr['wali'] : '-plih wali asuh-' ?></option> -->
+                                                    <?php while ($wash = mysqli_fetch_assoc($ash)) { ?>
+                                                        <option <?= $rr['wali'] == $wash['nama'] ? 'selected' : '' ?> value="<?= $wash['nama'] ?>"><?= $wash['nama'] ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </td>
+                                            <td <?= $clor; ?>>
+                                                <select name="nis" class="chosen-select2 form-control input-sm" id="">
+                                                    <option value=""><?= $rr['nis'] != '' ? $sndata['nama'] : '-plih santri-' ?></option>
+                                                    <?php while ($snn = mysqli_fetch_assoc($sntr)) { ?>
+                                                        <option <?= $rr['nis'] == $snn['nis'] ? 'selected' : '' ?> value="<?= $snn['nis'] ?>"><?= $snn['nama'] ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select name="ket" class="form-control input-sm" id="">
+                                                    <option value=""> -pilih- </option>
+                                                    <option <?= $rr['ket'] === 'bagus' ? 'selected' : ''; ?> value="bagus">Bagus</option>
+                                                    <option <?= $rr['ket'] === 'rusak' ? 'selected' : ''; ?> value="rusak">Rusak</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-minier btn-success" type="submit" name="save">
+                                                    Simpan
+                                                    <i class="ace-icon fa fa-check icon-on-right"></i>
                                                 </button>
-                                                <ul class="dropdown-menu dropdown-danger">
-                                                    <li>
-                                                        <a href="<?= 'lemari_edit.php?id=' . $rr['id_ldata'] ?>">Details</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="<?= 'hapus.php?kd=lmrd_s&id=' . $rr['id_ldata'] ?>" onclick="return confirm('Yakiin akan dihapus ?')">Hapus</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </td>
-
+                                                <div class="btn-group">
+                                                    <button data-toggle="dropdown" class="btn btn-minier btn-primary dropdown-toggle">
+                                                        Action
+                                                        <i class="ace-icon fa fa-angle-down icon-on-right"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-danger">
+                                                        <li>
+                                                            <a href="<?= 'lemari_edit.php?id=' . $rr['id_ldata'] ?>">Details</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="<?= 'hapus.php?kd=lmrd_s&id=' . $rr['id_ldata'] ?>" onclick="return confirm('Yakiin akan dihapus ?')">Hapus</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </form>
                                     </tr>
                                 <?php } ?>
                             </tbody>
@@ -123,24 +153,28 @@ $qr2 = mysqli_query($conn, "SELECT * FROM lemari_data WHERE jkl = 'putra' AND ka
 include 'foot.php';
 
 if (isset($_POST['save'])) {
-    $komplek = htmlspecialchars(mysqli_real_escape_string($conn, $_POST['komplek']));
-    $kamar = htmlspecialchars(mysqli_real_escape_string($conn, $_POST['kamar']));
-    $kode = 'L-' . htmlspecialchars(mysqli_real_escape_string($conn, $_POST['kode']));
-    $start = htmlspecialchars(mysqli_real_escape_string($conn, $_POST['start']));
-    $end = htmlspecialchars(mysqli_real_escape_string($conn, $_POST['end']));
+    $id = htmlspecialchars(mysqli_real_escape_string($conn, $_POST['id']));
+    $wali = htmlspecialchars(mysqli_real_escape_string($conn, $_POST['wali']));
+    $nis = htmlspecialchars(mysqli_real_escape_string($conn, $_POST['nis']));
+    $ket = htmlspecialchars(mysqli_real_escape_string($conn, $_POST['ket']));
 
-    $dtkmp = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM komplek WHERE nama = '$komplek' "));
-    $jkl = $dtkmp['daerah'];
-
-    for ($i = $start; $i <= $end; $i++) {
-        $sql = mysqli_query($conn, "INSERT INTO lemari_data VALUES ('', '$komplek', '$kamar', '$kode', '$i', '', '', '$jkl', 'bagus') ");
-    }
-    if ($sql) {
+    $cek = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM lemari_data  WHERE nis = '$nis'  "));
+    if ($cek > 0) {
         echo "
             <script>
-                window.location = 'lemari.php' ;
+                alert('Maaf santri sudah ada kamarnya');
+                 window.location = '" . $link_back . "' ;
             </script>
         ";
+    } else {
+        $sql = mysqli_query($conn, "UPDATE lemari_data SET wali = '$wali', nis = '$nis',ket = '$ket' WHERE id_ldata = $id  ");
+        if ($sql) {
+            echo "
+            <script>
+                 window.location = '" . $link_back . "' ;
+            </script>
+        ";
+        }
     }
 }
 ?>
