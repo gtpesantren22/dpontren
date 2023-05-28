@@ -115,11 +115,16 @@ if ($kd == 'lmrd') {
 }
 
 if ($kd == 'lmrd_s') {
+    $dt = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM lemari_data WHERE id_ldata = '$id' "));
+    $kamar = $dt['kamar'];
+    $lemari = $dt['lemari'];
+    $link_back = 'lemari_detail.php?kd=' . $kamar . '&lmr=' . $lemari;
+
     $sql = mysqli_query($conn, "DELETE FROM lemari_data WHERE id_ldata = '$id' ");
     if ($sql) {
         echo "
             <script>
-                window.location = 'lemari.php' ;
+                window.location = '" . $link_back . "' ;
             </script>
         ";
     }
