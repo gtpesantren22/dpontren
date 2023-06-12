@@ -53,6 +53,7 @@ $dt1 = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM kamar WHERE jkl = '
                                 <div class="col-md-7">
                                     <div class="table-header">
                                         Data Lemari Wilayah Putra
+                                        <a href="downLemari.php?jk=putra" target="_blank" class="badge badge-success">Downaload Data</a>
                                     </div>
                                     <div class="table-responsive">
                                         <table id="dynamic-table" class="table table-striped table-bordered table-hover">
@@ -176,6 +177,7 @@ $dt1 = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM kamar WHERE jkl = '
                                 <div class="col-md-7">
                                     <div class="table-header">
                                         Data Lemari Wilayah Putri
+                                        <a href="downLemari.php?jk=putri" target="_blank" class="badge badge-success">Downaload Data</a>
                                     </div>
                                     <div class="table-responsive">
                                         <table id="dynamic-table2" class="table table-striped table-bordered table-hover">
