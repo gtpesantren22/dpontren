@@ -20,8 +20,7 @@ include 'head.php';
             <div class="nav-search" id="nav-search">
                 <form class="form-search">
                     <span class="input-icon">
-                        <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input"
-                            autocomplete="off" />
+                        <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
                         <i class="ace-icon fa fa-search nav-search-icon"></i>
                     </span>
                 </form>
@@ -49,10 +48,8 @@ include 'head.php';
 
                             <div class="table-header">
                                 Data santri yang masih aktif di pesantren
-                                <a href="excel1.php" target="_blank" class="btn btn-success btn-sm pull-right"><i
-                                        class="fa fa-download"></i> Export to Excel</a>
-                                <button class="btn btn-warning btn-sm pull-right" data-toggle="modal"
-                                    data-target="#exampleModal"><i class=" fa fa-plus"></i> Tambah data baru</button>
+                                <a href="excel1.php" target="_blank" class="btn btn-success btn-sm pull-right"><i class="fa fa-download"></i> Export to Excel</a>
+                                <button class="btn btn-warning btn-sm pull-right" data-toggle="modal" data-target="#exampleModal"><i class=" fa fa-plus"></i> Tambah data baru</button>
                             </div>
 
                             <!-- div.table-responsive -->
@@ -77,20 +74,19 @@ include 'head.php';
                                         $sql = mysqli_query($conn, "SELECT * FROM tb_santri WHERE aktif = 'Y' ");
                                         while ($r = mysqli_fetch_assoc($sql)) {
                                         ?>
-                                        <tr>
-                                            <td><?= $no++ ?></td>
-                                            <td><?= $r['nis'] ?></td>
-                                            <td><?= $r['nama'] ?></td>
-                                            <td><?= $r['desa'] . ' - ' . $r['kec'] . ' - ' . $r['kab'] ?></td>
-                                            <td><?= $r['pass'] ?></td>
-                                            <td>
-                                                <form action="" method="post">
-                                                    <input type="hidden" name="nis" value="<?= $r['nis']; ?>">
-                                                    <button class="btn btn-minier btn-success" name="kirim"
-                                                        type="submit">Kirim</button>
-                                                </form>
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td><?= $no++ ?></td>
+                                                <td><?= $r['nis'] ?></td>
+                                                <td><?= $r['nama'] ?></td>
+                                                <td><?= $r['desa'] . ' - ' . $r['kec'] . ' - ' . $r['kab'] ?></td>
+                                                <td><?= $r['pass'] ?></td>
+                                                <td>
+                                                    <form action="" method="post">
+                                                        <input type="hidden" name="nis" value="<?= $r['nis']; ?>">
+                                                        <button class="btn btn-minier btn-success" name="kirim" type="submit">Kirim</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
                                         <?php } ?>
                                     </tbody>
                                 </table>
@@ -137,7 +133,7 @@ Terimakasih';
         curl_setopt_array(
             $curl,
             array(
-                CURLOPT_URL => 'http://8.215.26.187:3000/api/sendMessage',
+                CURLOPT_URL => 'http://156.67.221.155/:3000/api/sendMessage',
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
