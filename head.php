@@ -476,6 +476,14 @@ $level_user = $_SESSION['level'];
 
                             <b class="arrow"></b>
                         </li>
+                        <li class="">
+                            <a href="wali_asuh.php">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Wali Asuh
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
                         <?php if ($level_user === 'admin') { ?>
                             <li class="">
                                 <a href="tarik.php">
@@ -485,15 +493,16 @@ $level_user = $_SESSION['level'];
 
                                 <b class="arrow"></b>
                             </li>
-                        <?php } ?>
-                        <li class="">
-                            <a href="wali_asuh.php">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Wali Asuh
-                            </a>
+                            <li class="">
+                                <a href="export.php">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Export Data
+                                </a>
 
-                            <b class="arrow"></b>
-                        </li>
+                                <b class="arrow"></b>
+                            </li>
+                        <?php } ?>
+
                     </ul>
                 </li>
                 <?php if ($level_user === 'admin') { ?>

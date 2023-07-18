@@ -94,6 +94,7 @@ $thn_w = $splitw[2];
                     <div class="alert alert-danger">
                         <center><?= $r['nama']; ?></center>
                     </div>
+                    <!-- <center><button class="btn btn-primary btn-xs">Upload Foto</button></center> -->
                     <div class="space-6"></div>
 
                     <div class="profile-contact-info">
@@ -1046,27 +1047,40 @@ if (isset($_POST['tab6'])) {
         $nm_foto = $r['foto'];
     } else {
         $tmp = $_FILES['foto']['tmp_name'];
+        $phName = $_FILES['foto']['name'];
         $ext = explode('.', $foto);
-        $nm_foto = rand() . '.' . end($ext);
-        move_uploaded_file($tmp, 'images/santri/' . $nm_foto);
-    }
 
-    $sql = mysqli_query($conn, "UPDATE tb_santri SET hp = '$hp', foto = '$nm_foto', t_kos = '$t_kos',  ket = '$ket', pass = '$pass' , stts = '$stts' WHERE nis = '$nis' ");
+        $imageFileType = strtolower(pathinfo($phName, PATHINFO_EXTENSION));
+        $allowedTypes = array("jpg", "jpeg", "png", "gif");
+        if (in_array($imageFileType, $allowedTypes)) {
+            $nm_foto = rand() . '.' . end($ext);
+            if (move_uploaded_file($tmp, 'images/santri/' . $nm_foto)) {
+                $sql = mysqli_query($conn, "UPDATE tb_santri SET hp = '$hp', foto = '$nm_foto', t_kos = '$t_kos',  ket = '$ket', pass = '$pass' , stts = '$stts' WHERE nis = '$nis' ");
 
-    if ($sql) {
-        echo "
-        <script>
-            window.location.href = 'edit.php?nis=" . $nis . "';
-        </script>
-    ";
-    } else {
-        echo
-        "
-        <script>
-            alert('Data Gagal');
-            window.location.href = 'edit.php?nis=" . $nis . "';
-        </script>
-    ";
+                if ($sql) {
+                    echo "
+                        <script>
+                            window.location.href = 'edit.php?nis=" . $nis . "';
+                        </script>
+                    ";
+                } else {
+                    echo
+                    "
+                        <script>
+                            alert('Data Gagal');
+                            window.location.href = 'edit.php?nis=" . $nis . "';
+                        </script>
+                    ";
+                }
+            }
+        } else {
+            echo "
+                <script>
+                alert('File yang diupload harus JPG / JPEG / PNG.');
+                    window.location.href = 'edit.php?nis=" . $nis . "';
+                </script>
+            ";
+        }
     }
 }
 
@@ -1175,8 +1189,4 @@ if (isset($_POST['tab6'])) {
             });
         });
     });
-
-
-
-        
 </script>
