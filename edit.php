@@ -1053,7 +1053,7 @@ if (isset($_POST['tab6'])) {
         $imageFileType = strtolower(pathinfo($phName, PATHINFO_EXTENSION));
         $allowedTypes = array("jpg", "jpeg", "png", "gif");
         if (in_array($imageFileType, $allowedTypes)) {
-            $nm_foto = rand() . '.' . end($ext);
+            $nm_foto = $nis . '-' . rand() . '.' . end($ext);
             if (move_uploaded_file($tmp, 'images/santri/' . $nm_foto)) {
                 $sql = mysqli_query($conn, "UPDATE tb_santri SET hp = '$hp', foto = '$nm_foto', t_kos = '$t_kos',  ket = '$ket', pass = '$pass' , stts = '$stts' WHERE nis = '$nis' ");
 
