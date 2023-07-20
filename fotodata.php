@@ -26,7 +26,7 @@
             <?php
             include 'fungsi.php';
             $no = 1;
-            $sql = mysqli_query($conn, "SELECT * FROM tb_santri WHERE aktif = 'Y' ");
+            $sql = mysqli_query($conn, "SELECT * FROM tb_santri WHERE aktif = 'Y' AND foto = '' ");
             while ($r = mysqli_fetch_assoc($sql)) {
                 $t = array('Bayar', 'Ust/Usdtz', 'Khaddam', 'Gratis', 'Berhenti');
             ?>
