@@ -484,6 +484,14 @@ $level_user = $_SESSION['level'];
 
                             <b class="arrow"></b>
                         </li>
+                        <li class="">
+                            <a href="fotodata.php">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Data Foto
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
                         <?php if ($level_user === 'admin') { ?>
                             <li class="">
                                 <a href="tarik.php">
