@@ -62,7 +62,7 @@ function searchPhotoByNIM($directory, $nim)
                     <td><?= $r['foto'] !=  '' ? 'Ada Fotonya' : '' ?></td>
                     <td>
                         <?php
-                        $directory = 'images/santri/'; // Ganti dengan path direktori yang sesuai
+                        $directory = 'https://psb.ppdwk.com/assets/berkas/'; // Ganti dengan path direktori yang sesuai
                         $nim = $r['nis']; // Ganti dengan NIM yang ingin Anda cari
 
                         $matchingFiles = searchPhotoByNIM($directory, $nim);
@@ -73,7 +73,7 @@ function searchPhotoByNIM($directory, $nim)
                             echo "Foto yang cocok dengan NIM $nim:";
                             foreach ($matchingFiles as $file) {
                                 echo "<br>" . $file;
-                                echo "<br> <img src='images/santri/" . $file . "' height='100' /> ";
+                                echo "<br> <img src='https://psb.ppdwk.com/assets/santri/" . $file . "' height='100' /> ";
                                 echo "<a href='kembalikan.php?nis=$nim&foto=$file'>Kembalikan</a>";
                             }
                         }
