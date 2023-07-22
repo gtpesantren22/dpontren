@@ -69,7 +69,7 @@ function searchPhotoByNIM($directory, $nim)
             while ($r = mysqli_fetch_assoc($sql)) {
                 $t = array('Bayar', 'Ust/Usdtz', 'Khaddam', 'Gratis', 'Berhenti');
                 $nis = $r['nis'];
-                $foto = mysqli_fetch_row(mysqli_query($conn2, "SELECT * FROM foto_file WHERE nis '$nis' "));
+                $foto = mysqli_fetch_assoc(mysqli_query($conn2, "SELECT * FROM foto_file WHERE nis '$nis' "));
             ?>
                 <tr>
                     <td><?= $no++ ?></td>
