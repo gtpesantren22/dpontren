@@ -82,10 +82,11 @@ function searchPhotoByNIM($directory, $nim)
                     <td>
                         <form action="" method="post">
                             <label for="photo_url">URL Foto:</label>
+                            <input type="hidden" name="nis" value="<?= $nis ?>">
                             <input type="text" name="photo_url" id="photo_url" value="<?= 'https://psb.ppdwk.com/assets/berkas/' . $foto['diri'] ?>" required>
                             <input type="submit" value="Upload">
                         </form>
-                        <img src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $foto['diri'] ?>" alt="" height="90">
+                        <!-- <img src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $foto['diri'] ?>" alt="" height="90"> -->
                     </td>
                     <td>
                         <a href="<?= 'cariFoto.php?nis=' . $r['nis'] ?>"><button class="btn btn-primary btn-minier">Cari</button></a>
@@ -97,3 +98,33 @@ function searchPhotoByNIM($directory, $nim)
 </body>
 
 </html>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $photo_url = $_POST["photo_url"];
+    $nis = $_POST["nis"];
+
+    // Validasi link foto, misalnya pastikan link memiliki format gambar yang diperbolehkan
+    $allowed_formats = array("jpg", "jpeg", "png", "gif");
+    $url_info = pathinfo($photo_url);
+    $extension = strtolower($url_info["extension"]);
+    if (!in_array($extension, $allowed_formats)) {
+        die("Format file tidak diperbolehkan. Hanya menerima format JPG, JPEG, PNG, dan GIF.");
+    }
+
+    // Mendapatkan nama file untuk menyimpannya
+    $file_name = $nis . rand() . "." . $extension;
+
+    // Simpan foto dari link ke server
+    if (copy($photo_url, "images/santri/" . $file_name)) {
+        $sqUp = mysqli_query($conn, "UPDATE tb_santri SET foto = '$file_name' WHERE nis = '$nis' ");
+        if ($sqUp) {
+            echo "
+            <script>window.location = 'foto_data.php' </script>
+            ";
+        }
+    } else {
+        echo "Gagal mengupload foto.";
+    }
+}
+?>
