@@ -113,7 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Mendapatkan nama file untuk menyimpannya
-    $file_name = $nis . rand() . "." . $extension;
+    $file_name = $nis . '-' . rand() . "." . $extension;
 
     // Simpan foto dari link ke server
     if (copy($photo_url, "images/santri/" . $file_name)) {
