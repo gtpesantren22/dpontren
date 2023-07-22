@@ -81,9 +81,9 @@ function searchPhotoByNIM($directory, $nim)
                     <td><?= $r['foto'] !=  '' ? 'Ada Fotonya' : '' ?></td>
                     <td>
                         <form action="" method="post">
-                            <label for="photo_url">URL Foto:</label>
+                            <label for="photo_url">URL Foto: <?= 'https://psb.ppdwk.com/assets/berkas/' . $foto['diri'] ?></label>
                             <input type="hidden" name="nis" value="<?= $nis ?>">
-                            <input type="text" name="photo_url" id="photo_url" value="<?= 'https://psb.ppdwk.com/assets/berkas/' . $foto['diri'] ?>" required>
+                            <input type="hidden" name="photo_url" id="photo_url" value="<?= 'https://psb.ppdwk.com/assets/berkas/' . $foto['diri'] ?>" required>
                             <input type="submit" value="Upload">
                         </form>
                         <!-- <img src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $foto['diri'] ?>" alt="" height="90"> -->
