@@ -16,6 +16,22 @@ function searchPhotoByNIM($directory, $nim)
     }
 
     return $matchingFiles;
+
+    // $directory = 'https://psb.ppdwk.com/assets/berkas/'; // Ganti dengan path direktori yang sesuai
+    // $nim = $r['nis']; // Ganti dengan NIM yang ingin Anda cari
+
+    // $matchingFiles = searchPhotoByNIM($directory, $nim);
+
+    // if (empty($matchingFiles)) {
+    //     echo "Tidak ditemukan foto untuk NIM $nim.";
+    // } else {
+    //     echo "Foto yang cocok dengan NIM $nim:";
+    //     foreach ($matchingFiles as $file) {
+    //         echo "<br>" . $file;
+    //         echo "<br> <img src='https://psb.ppdwk.com/assets/santri/" . $file . "' height='100' /> ";
+    //         echo "<a href='kembalikan.php?nis=$nim&foto=$file'>Kembalikan</a>";
+    //     }
+    // }
 }
 
 ?>
@@ -47,37 +63,29 @@ function searchPhotoByNIM($directory, $nim)
         <tbody>
             <?php
             include 'fungsi.php';
+            $conn2 = mysqli_connect("localhost", "u9048253_dwk", "PesantrenDWKIT2021", "u9048253_psb23");
             $no = 1;
-            $sql = mysqli_query($conn, "SELECT * FROM tb_santri WHERE aktif = 'Y' AND foto = '' ");
+            $sql = mysqli_query($conn, "SELECT * FROM tb_santri WHERE aktif = 'Y' AND foto = '' AND nis LIKE '2023%' ");
             while ($r = mysqli_fetch_assoc($sql)) {
                 $t = array('Bayar', 'Ust/Usdtz', 'Khaddam', 'Gratis', 'Berhenti');
+                $nis = $r['nis'];
+                $foto = mysqli_fetch_row(mysqli_query($conn2, "SELECT * FROM foto_file WHERE nis '$nis' "));
             ?>
                 <tr>
                     <td><?= $no++ ?></td>
-                    <td><?= $r['nis'] ?></td>
+                    <td><?= $nis ?></td>
                     <td><?= $r['nama'] ?></td>
                     <td><?= $r['desa'] . ' - ' . $r['kec'] . ' - ' . $r['kab'] ?></td>
                     <td><?= $r['k_formal'] . ' - ' . $r['t_formal'] ?></td>
                     <td><?= $r['k_madin'] . ' - ' . $r['r_madin'] ?></td>
                     <td><?= $r['foto'] !=  '' ? 'Ada Fotonya' : '' ?></td>
                     <td>
-                        <?php
-                        $directory = 'https://psb.ppdwk.com/assets/berkas/'; // Ganti dengan path direktori yang sesuai
-                        $nim = $r['nis']; // Ganti dengan NIM yang ingin Anda cari
-
-                        $matchingFiles = searchPhotoByNIM($directory, $nim);
-
-                        if (empty($matchingFiles)) {
-                            echo "Tidak ditemukan foto untuk NIM $nim.";
-                        } else {
-                            echo "Foto yang cocok dengan NIM $nim:";
-                            foreach ($matchingFiles as $file) {
-                                echo "<br>" . $file;
-                                echo "<br> <img src='https://psb.ppdwk.com/assets/santri/" . $file . "' height='100' /> ";
-                                echo "<a href='kembalikan.php?nis=$nim&foto=$file'>Kembalikan</a>";
-                            }
-                        }
-                        ?>
+                        <form action="" method="post">
+                            <label for="photo_url">URL Foto:</label>
+                            <input type="text" name="photo_url" id="photo_url" value="<?= 'https://psb.ppdwk.com/assets/berkas/' . $foto['diri'] ?>" required>
+                            <input type="submit" value="Upload">
+                        </form>
+                        <img src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $foto['diri'] ?>" alt="" height="90">
                     </td>
                     <td>
                         <a href="<?= 'cariFoto.php?nis=' . $r['nis'] ?>"><button class="btn btn-primary btn-minier">Cari</button></a>
