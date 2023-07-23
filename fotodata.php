@@ -52,11 +52,13 @@ function searchPhotoByNIM($directory, $nim)
                 <th>NIS</th>
                 <th>Nama</th>
                 <th>Alamat</th>
+                <th>JKL</th>
+                <th>Lmbga</th>
                 <th>Kelas</th>
                 <th>Madin</th>
                 <th>Foto</th>
-                <th>Cek</th>
-                <th>#</th>
+                <!-- <th>Cek</th> -->
+                <!-- <th>#</th> -->
             </tr>
         </thead>
 
@@ -76,21 +78,23 @@ function searchPhotoByNIM($directory, $nim)
                     <td><?= $nis ?></td>
                     <td><?= $r['nama'] ?></td>
                     <td><?= $r['desa'] . ' - ' . $r['kec'] . ' - ' . $r['kab'] ?></td>
+                    <td><?= $r['k_formal'] ?></td>
                     <td><?= $r['k_formal'] . ' - ' . $r['t_formal'] ?></td>
+                    <td><?= $r['jkl'] ?></td>
                     <td><?= $r['k_madin'] . ' - ' . $r['r_madin'] ?></td>
                     <td><?= $r['foto'] !=  '' ? 'Ada Fotonya' : '' ?></td>
-                    <td>
+                    <!-- <td>
                         <form action="" method="post">
                             <label for="photo_url">URL Foto: <?= $foto['diri'] ?></label>
                             <input type="hidden" name="nis" value="<?= $nis ?>">
                             <input type="hidden" name="photo_url" id="photo_url" value="<?= 'https://psb.ppdwk.com/assets/berkas/' . $foto['diri'] ?>" required>
                             <input type="submit" value="Upload">
                         </form>
-                        <!-- <img src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $foto['diri'] ?>" alt="" height="90"> -->
+                        <img src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $foto['diri'] ?>" alt="" height="90">
                     </td>
                     <td>
                         <a href="<?= 'cariFoto.php?nis=' . $r['nis'] ?>"><button class="btn btn-primary btn-minier">Cari</button></a>
-                    </td>
+                    </td> -->
                 </tr>
             <?php } ?>
         </tbody>
