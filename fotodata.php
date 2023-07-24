@@ -67,7 +67,7 @@ function searchPhotoByNIM($directory, $nim)
             include 'fungsi.php';
             $conn2 = mysqli_connect("localhost", "u9048253_dwk", "PesantrenDWKIT2021", "u9048253_psb23");
             $no = 1;
-            $sql = mysqli_query($conn, "SELECT * FROM tb_santri WHERE aktif = 'Y' ORDER  BY foto ASC, t_formal ASC, nama ASC ");
+            $sql = mysqli_query($conn, "SELECT * FROM tb_santri WHERE aktif = 'Y' ORDER  BY foto ASC, jkl ASC, t_formal ASC, k_formal ASC, nama ASC ");
             while ($r = mysqli_fetch_assoc($sql)) {
                 $t = array('Bayar', 'Ust/Usdtz', 'Khaddam', 'Gratis', 'Berhenti');
                 $nis = $r['nis'];
@@ -78,8 +78,8 @@ function searchPhotoByNIM($directory, $nim)
                     <td><?= $nis ?></td>
                     <td><?= $r['nama'] ?></td>
                     <td><?= $r['desa'] . ' - ' . $r['kec'] . ' - ' . $r['kab'] ?></td>
+                    <td><?= $r['t_formal'] ?></td>
                     <td><?= $r['k_formal'] ?></td>
-                    <td><?= $r['k_formal'] . ' - ' . $r['t_formal'] ?></td>
                     <td><?= $r['jkl'] ?></td>
                     <td><?= $r['k_madin'] . ' - ' . $r['r_madin'] ?></td>
                     <td><?= $r['foto'] !=  '' ? 'Ada Fotonya' : '' ?></td>
