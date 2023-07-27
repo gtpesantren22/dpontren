@@ -124,7 +124,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sqUp = mysqli_query($conn, "UPDATE tb_santri SET foto = '$file_name' WHERE nis = '$nis' ");
         if ($sqUp) {
             echo "
-            <script>window.location = 'fotodata.php' </script>
+            <script>
+            alert('Update foto berhasil')
+            window.location = 'fotodata2.php' </script>
             ";
         }
     } else {
