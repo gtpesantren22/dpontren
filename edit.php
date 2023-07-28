@@ -826,10 +826,10 @@ $thn_w = $splitw[2];
                                             <select name="ket" id="" class="form-control" required>
                                                 <?php
                                                 $k = $r['ket'];
-                                                $kt = ["-", "Ust/Usdtz", "Khaddam", "Gratis", "Berhenti"];
+                                                $kt = ["Bayar", "Ust/Usdtz", "Khaddam", "Gratis", "Berhenti"];
                                                 ?>
                                                 <option value="<?= $k; ?>"><?= $kt[$k]; ?></option>
-                                                <option value="0">---------------</option>
+                                                <option value="0"> Bayar </option>
                                                 <option value="1"> Ust/Usdtz </option>
                                                 <option value="2"> Khaddam </option>
                                                 <option value="3"> Gratis </option>
