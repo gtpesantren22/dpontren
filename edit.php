@@ -1045,6 +1045,24 @@ if (isset($_POST['tab6'])) {
 
     if (empty($foto)) {
         $nm_foto = $r['foto'];
+
+        $sql = mysqli_query($conn, "UPDATE tb_santri SET hp = '$hp', t_kos = '$t_kos',  ket = '$ket', pass = '$pass' , stts = '$stts' WHERE nis = '$nis' ");
+
+        if ($sql) {
+            echo "
+                        <script>
+                            window.location.href = 's_aktif.php';
+                        </script>
+                    ";
+        } else {
+            echo
+            "
+                        <script>
+                            alert('Data Gagal');
+                            window.location.href = 'edit.php?nis=" . $nis . "';
+                        </script>
+                    ";
+        }
     } else {
         $tmp = $_FILES['foto']['tmp_name'];
         $phName = $_FILES['foto']['name'];
