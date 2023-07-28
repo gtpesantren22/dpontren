@@ -1051,7 +1051,7 @@ if (isset($_POST['tab6'])) {
         if ($sql) {
             echo "
                         <script>
-                            window.location.href = 's_aktif.php';
+                            window.location.href = 'edit.php?nis=" . $nis . "';
                         </script>
                     ";
         } else {
