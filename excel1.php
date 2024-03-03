@@ -12,7 +12,7 @@ if ($mysqli->connect_error) {
 #akhir koneksi
 
 #ambil data
-$query = "SELECT id_santri, nis, nik, no_kk, nama, tempat, tanggal, jkl, desa, kec, kab, prov, k_formal, t_formal, r_formal, jurusan
+$query = "SELECT id_santri, nis, nik, no_kk, nama, tempat, tanggal, jkl, desa, kec, kab, prov, k_formal, t_formal, r_formal, jurusan,
 k_madin, r_madin, komplek, kamar, bapak, ibu, hp, pass, foto, stts, t_kos, ket FROM tb_santri WHERE aktif = 'Y' ORDER BY t_formal";
 
 $sql = $mysqli->query($query);
