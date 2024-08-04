@@ -56,7 +56,7 @@ include 'head.php';
 
                             <!-- div.dataTables_borderWrap -->
                             <div class="table-responsive">
-                                <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                                <table id="table-siswa" class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -70,41 +70,6 @@ include 'head.php';
                                     </thead>
 
                                     <tbody>
-                                        <?php
-                                        $no = 1;
-                                        $sql = mysqli_query($conn, "SELECT * FROM tb_santri WHERE aktif = 'Y' ");
-                                        while ($r = mysqli_fetch_assoc($sql)) {
-                                            $t = array('Bayar', 'Ust/Usdtz', 'Khaddam', 'Gratis', 'Berhenti');
-                                        ?>
-                                            <tr>
-                                                <td><?= $no++ ?></td>
-                                                <td><?= $r['nis'] ?></td>
-                                                <td><?= $r['nama'] ?></td>
-                                                <td><?= $r['desa'] . ' - ' . $r['kec'] . ' - ' . $r['kab'] ?></td>
-                                                <td><?= $r['k_formal'] . ' - ' . $r['t_formal'] ?></td>
-                                                <td><?= $r['k_madin'] . ' - ' . $r['r_madin'] ?></td>
-                                                <td>
-                                                    <?php if ($level_user === 'admin') { ?>
-                                                        <div class="btn-group">
-                                                            <button data-toggle="dropdown" class="btn btn-minier btn-primary dropdown-toggle">
-                                                                Action
-                                                                <i class="ace-icon fa fa-angle-down icon-on-right"></i>
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-danger">
-                                                                <li>
-                                                                    <a href="<?= 'edit.php?nis=' . $r['nis'] ?>">Edit</a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="<?= 'hapus.php?kd=mti&id=' . $r['nis'] ?>">Keluar</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    <?php } ?>
-                                                    <!-- <a href="<?= 'edit.php?nis=' . $r['nis'] ?>"><button class="btn btn-primary btn-minier"><i class="fa fa-edit"></i></button></a> -->
-                                                    <!-- <a href="<?= 'back.php?nis=' . $r['nis'] ?>"><button class="btn btn-danger btn-minier"><i class="fa fa-times"></i></button></a> -->
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -170,3 +135,49 @@ if (isset($_POST['simpan'])) {
     }
 }
 ?>
+<script src="assets/js/jquery-2.1.4.min.js"></script>
+<script src="assets/js/jquery.dataTables.min.js"></script>
+<script src="assets/js/jquery.dataTables.bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#table-siswa').DataTable({
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "url": "ambil_data.php?aktif=Y", // Path ke file PHP Anda
+                "type": "POST"
+            },
+            "columns": [{
+                    "data": "no"
+                },
+                {
+                    "data": "nis"
+                },
+                {
+                    "data": "nama"
+                },
+                {
+                    "data": null, // Karena Anda ingin menggabungkan beberapa field
+                    "render": function(data, type, row) {
+                        return row.desa + ', ' + row.kec + ', ' + row.kab;
+                    }
+                },
+                {
+                    "data": null, // Karena Anda ingin menggabungkan beberapa field
+                    "render": function(data, type, row) {
+                        return row.k_formal + ' - ' + row.t_formal;
+                    }
+                },
+                {
+                    "data": null, // Karena Anda ingin menggabungkan beberapa field
+                    "render": function(data, type, row) {
+                        return row.k_madin + ' - ' + row.r_madin;
+                    }
+                },
+                {
+                    "data": "aksi"
+                } // Kolom aksi di sini
+            ]
+        });
+    });
+</script>

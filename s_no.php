@@ -46,15 +46,12 @@ include 'head.php';
                     <div class="row">
                         <div class="col-xs-12">
 
-                            <div class="table-header">
-                                Data santri yang masih aktif di pesantren
+                            <div class="table-header bg-danger">
+                                Data santri Alumni (Non Aktif)
                             </div>
 
-                            <!-- div.table-responsive -->
-
-                            <!-- div.dataTables_borderWrap -->
                             <div class="table-responsive">
-                                <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                                <table id="table-siswa" class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -62,34 +59,16 @@ include 'head.php';
                                             <th>Nama</th>
                                             <th>Alamat</th>
                                             <th>Kelas</th>
+                                            <th>Madin</th>
                                             <th>#</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        <?php
-                                        $no = 1;
-                                        $sql = mysqli_query($conn, "SELECT * FROM tb_santri WHERE aktif = 'T' ");
-                                        while ($r = mysqli_fetch_assoc($sql)) {
-                                            $t = array('Bayar', 'Ust/Usdtz', 'Khaddam', 'Gratis', 'Berhenti');
-                                        ?>
-                                            <tr>
-                                                <td><?= $no++ ?></td>
-                                                <td><?= $r['nis'] ?></td>
-                                                <td><?= $r['nama'] ?></td>
-                                                <td><?= $r['desa'] . ' - ' . $r['kec'] . ' - ' . $r['kab'] ?></td>
-                                                <td><?= $r['k_formal'] . ' - ' . $r['t_formal'] ?></td>
-                                                <td>
-                                                    <?php if ($level_user === 'admin') { ?>
-                                                        <a href="<?= 'edit.php?nis=' . $r['nis'] ?>"><button class="btn btn-primary btn-minier"><i class="fa fa-edit"></i></button></a>
-                                                        <a href="<?= 'back.php?nis=' . $r['nis'] ?>"><button class="btn btn-danger btn-minier"><i class="fa fa-times"></i></button></a>
-                                                    <?php } ?>
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
+
                         </div>
                     </div>
 
@@ -103,3 +82,50 @@ include 'head.php';
 <?php
 include 'foot.php';
 ?>
+
+<script src="assets/js/jquery-2.1.4.min.js"></script>
+<script src="assets/js/jquery.dataTables.min.js"></script>
+<script src="assets/js/jquery.dataTables.bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#table-siswa').DataTable({
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "url": "ambil_data.php?aktif=N", // Path ke file PHP Anda
+                "type": "POST"
+            },
+            "columns": [{
+                    "data": "no"
+                },
+                {
+                    "data": "nis"
+                },
+                {
+                    "data": "nama"
+                },
+                {
+                    "data": null, // Karena Anda ingin menggabungkan beberapa field
+                    "render": function(data, type, row) {
+                        return row.desa + ', ' + row.kec + ', ' + row.kab;
+                    }
+                },
+                {
+                    "data": null, // Karena Anda ingin menggabungkan beberapa field
+                    "render": function(data, type, row) {
+                        return row.k_formal + ' - ' + row.t_formal;
+                    }
+                },
+                {
+                    "data": null, // Karena Anda ingin menggabungkan beberapa field
+                    "render": function(data, type, row) {
+                        return row.k_madin + ' - ' + row.r_madin;
+                    }
+                },
+                {
+                    "data": "aksi"
+                } // Kolom aksi di sini
+            ]
+        });
+    });
+</script>
