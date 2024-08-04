@@ -56,14 +56,14 @@
 <script src="assets/js/buttons.colVis.min.js"></script>
 <script src="assets/js/dataTables.select.min.js"></script>
 
-<script src="assets/js/jquery-ui.custom.min.js"></script>
+<!-- <script src="assets/js/jquery-ui.custom.min.js"></script>
 <script src="assets/js/jquery.ui.touch-punch.min.js"></script>
 <script src="assets/js/chosen.jquery.min.js"></script>
 <script src="assets/js/jquery.easypiechart.min.js"></script>
 <script src="assets/js/jquery.sparkline.index.min.js"></script>
 <script src="assets/js/jquery.flot.min.js"></script>
 <script src="assets/js/jquery.flot.pie.min.js"></script>
-<script src="assets/js/jquery.flot.resize.min.js"></script>
+<script src="assets/js/jquery.flot.resize.min.js"></script> -->
 
 
 <!-- ace scripts -->

@@ -201,6 +201,10 @@ $thn_w = $splitw[2];
                                                 </div>
                                             </div>
                                             <div class="form-group col-sm-12">
+                                                <label>NISN</label>
+                                                <input type="text" name="nisn" class="form-control" placeholder="" value="<?= $r['nisn']; ?>">
+                                            </div>
+                                            <div class="form-group col-sm-12">
                                                 <label>Nama Lengkap *</label>
                                                 <input type="text" name="nama" class="form-control" placeholder="" required value="<?= $r['nama']; ?>">
                                             </div>
@@ -859,6 +863,7 @@ if (isset($_POST['tab1'])) {
     // $nisn = htmlspecialchars(mysqli_escape_string($conn, $_POST['nisn']));
     $nik = htmlspecialchars(mysqli_escape_string($conn, $_POST['nik']));
     $no_kk = htmlspecialchars(mysqli_escape_string($conn, $_POST['no_kk']));
+    $nisn = htmlspecialchars(mysqli_escape_string($conn, $_POST['nisn']));
     $email = htmlspecialchars(mysqli_escape_string($conn, $_POST['email']));
     $nama = htmlspecialchars(strtoupper(mysqli_escape_string($conn, $_POST['nama'])));
     $tempat = htmlspecialchars(strtoupper(mysqli_escape_string($conn, $_POST['tempat'])));
@@ -885,9 +890,9 @@ if (isset($_POST['tab1'])) {
     $kel = mysqli_escape_string($conn, $kl['nama']);
 
     if ($id_prov == '' && $id_kab == '' && $id_kec == '' && $id_kel == '') {
-        $sql = mysqli_query($conn, "UPDATE tb_santri SET nik = '$nik', no_kk = '$no_kk', nama = '$nama', tempat = '$tempat', tanggal = '$tanggal', jkl = '$jkl', jln = '$jln', rt = '$rt', rw = '$rw', kd_pos = '$kd_pos', anak_ke = '$anak_ke', jml_sdr = '$jml_sdr' WHERE nis = '$nis' ");
+        $sql = mysqli_query($conn, "UPDATE tb_santri SET nik = '$nik', no_kk = '$no_kk', nisn = '$nisn', nama = '$nama', tempat = '$tempat', tanggal = '$tanggal', jkl = '$jkl', jln = '$jln', rt = '$rt', rw = '$rw', kd_pos = '$kd_pos', anak_ke = '$anak_ke', jml_sdr = '$jml_sdr' WHERE nis = '$nis' ");
     } else {
-        $sql = mysqli_query($conn, "UPDATE tb_santri SET nik = '$nik', no_kk = '$no_kk', email = '$email', nama = '$nama', tempat = '$tempat', tanggal = '$tanggal', jkl = '$jkl', jln = '$jln', rt = '$rt', rw = '$rw', kd_pos = '$kd_pos', prov = '$prop', kab = '$kab', kec = '$kec', desa = '$kel', anak_ke = '$anak_ke', jml_sdr = '$jml_sdr' WHERE nis = '$nis' ");
+        $sql = mysqli_query($conn, "UPDATE tb_santri SET nik = '$nik', no_kk = '$no_kk', nisn = '$nisn', email = '$email', nama = '$nama', tempat = '$tempat', tanggal = '$tanggal', jkl = '$jkl', jln = '$jln', rt = '$rt', rw = '$rw', kd_pos = '$kd_pos', prov = '$prop', kab = '$kab', kec = '$kec', desa = '$kel', anak_ke = '$anak_ke', jml_sdr = '$jml_sdr' WHERE nis = '$nis' ");
     }
     if ($sql) {
         echo "
