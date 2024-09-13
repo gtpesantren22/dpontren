@@ -25,7 +25,7 @@ if ($zip->open($zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRU
     if ($result->num_rows > 0) {
         // Loop through the result and add files to the zip
         while ($row = $result->fetch_assoc()) {
-            $filePath = '/images/santri/';
+            $filePath = __DIR__ . '/images/santri/';
             $fileName = $row['foto'];
 
             // Check if the file exists before adding it to the zip
