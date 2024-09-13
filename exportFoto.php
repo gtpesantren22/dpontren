@@ -11,47 +11,54 @@ if (!isset($_SESSION['04bb9374-8e84-48c8-b858-cfaa2087b56f'])) {
     ";
 }
 
-// Create a new ZipArchive object
-$zip = new ZipArchive();
-$zipFileName = 'Data-Foto-santri.zip';
+/// create a zip file
+$zip_file = "images/all-santri-image.zip";
+touch($zip_file);
+// end
 
-// Open the zip file for writing
-if ($zip->open($zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
 
-    // Fetch files from the database
-    $sql = "SELECT foto FROM tb_santri WHERE aktif = 'Y' AND foto != '' "; // Customize this query to match your table
+// open zip file
+$zip = new ZipArchive;
+$this_zip = $zip->open($zip_file);
+
+
+if ($this_zip) {
+
+    // Query untuk mengambil data file dari database
+    $sql = "SELECT foto FROM tb_santri WHERE aktif = 'Y' AND foto != '' "; // Sesuaikan dengan tabel Anda
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        // Loop through the result and add files to the zip
+        // Loop melalui hasil dan menambahkan file ke dalam ZIP
         while ($row = $result->fetch_assoc()) {
-            $filePath = __DIR__ . '/images/santri/';
-            $fileName = $row['foto'];
+            $file_name = $row['file_name'];
+            $file_path = "images/santri/" . $file_name; // Asumsikan file tersimpan di folder ../image/
 
-            // Check if the file exists before adding it to the zip
-            if (file_exists($filePath)) {
-                $zip->addFile($filePath, $fileName); // Add file to the zip archive
-            } else {
-                echo "File does not exist: " . $filePath;
+            // Cek apakah file ada sebelum menambahkannya ke dalam ZIP
+            if (file_exists($file_path)) {
+                $zip->addFile($file_path, $file_name); // Menambahkan file ke ZIP
             }
         }
     } else {
-        echo "No files found in the database.";
+        echo "Tidak ada file ditemukan di database.";
     }
 
-    // Close the zip file
+    // Menutup ZIP
     $zip->close();
 
-    // Set headers to force download of the zip file
-    header('Content-Type: application/zip');
-    header('Content-Disposition: attachment; filename="' . basename($zipFileName) . '"');
-    header('Content-Length: ' . filesize($zipFileName));
 
-    // Read the file and send it to the browser
-    readfile($zipFileName);
+    // download this created zip file
+    if (file_exists($zip_file)) {
+        //name when download
+        $demo_name = "santri-all-images.zip";
 
-    // Optionally, delete the zip file after download
-    unlink($zipFileName);
-} else {
-    echo 'Failed to create zip file.';
+        header('Content-type: application/zip');
+        header('Content-Disposition: attachment; filename="' . $demo_name . '"');
+        readfile($zip_file); // auto download
+
+        //delete this zip file after download
+        unlink($zip_file);
+    }
+
+    $conn->close();
 }
