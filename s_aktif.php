@@ -49,7 +49,7 @@ include 'head.php';
                             <div class="table-header">
                                 Data santri yang masih aktif di pesantren
                                 <a href="excel1.php" target="_blank" class="btn btn-success btn-sm pull-right"><i class="fa fa-download"></i> Export Data to Excel</a>
-                                <a href="exportFoto.php" target="_blank" class="btn btn-info btn-sm pull-right"><i class="fa fa-download"></i> Download Foto</a>
+                                <a href="downFoto.php" class="btn btn-info btn-sm pull-right"><i class="fa fa-download"></i> Download Foto</a>
                                 <button class="btn btn-warning btn-sm pull-right" data-toggle="modal" data-target="#exampleModal"><i class=" fa fa-plus"></i> Tambah data baru</button>
                             </div>
 

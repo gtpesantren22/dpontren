@@ -11,6 +11,9 @@ if (!isset($_SESSION['04bb9374-8e84-48c8-b858-cfaa2087b56f'])) {
     ";
 }
 
+$lembaga = $_POST['lembaga'];
+$jkl = $_POST['jkl'];
+
 /// create a zip file
 $zip_file = "images/all-santri-image.zip";
 touch($zip_file);
@@ -25,7 +28,7 @@ $this_zip = $zip->open($zip_file);
 if ($this_zip) {
 
     // Query untuk mengambil data file dari database
-    $sql = "SELECT foto FROM tb_santri WHERE aktif = 'Y' AND foto != '' "; // Sesuaikan dengan tabel Anda
+    $sql = "SELECT foto FROM tb_santri WHERE aktif = 'Y' AND t_formal = '$lembaga' AND jkl = '$jkl' AND foto != '' "; // Sesuaikan dengan tabel Anda
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
