@@ -13,6 +13,7 @@ if (!isset($_SESSION['04bb9374-8e84-48c8-b858-cfaa2087b56f'])) {
 
 $lembaga = $_POST['lembaga'];
 $jkl = $_POST['jkl'];
+$jklname = $jkl == 'Laki-laki' ? 'Putra' : 'Putri';
 
 /// create a zip file
 $zip_file = "images/all-santri-image.zip";
@@ -53,7 +54,7 @@ if ($this_zip) {
     // download this created zip file
     if (file_exists($zip_file)) {
         //name when download
-        $demo_name = "santri-all-images.zip";
+        $demo_name = "santri-$lembaga-$jklname.zip";
 
         header('Content-type: application/zip');
         header('Content-Disposition: attachment; filename="' . $demo_name . '"');
