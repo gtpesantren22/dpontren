@@ -13,7 +13,7 @@ if ($mysqli->connect_error) {
 
 #ambil data
 $query = "SELECT id_santri, nis, nik, no_kk, nama, tempat, tanggal, jkl, desa, kec, kab, prov, k_formal, t_formal, r_formal, jurusan,
-k_madin, r_madin, komplek, kamar, bapak, ibu, hp, pass, foto, stts, t_kos, ket FROM tb_santri WHERE aktif = 'Y' ORDER BY t_formal";
+k_madin, r_madin, komplek, kamar, bapak, ibu, hp, pass, foto, stts, t_kos, ket, nisn FROM tb_santri WHERE aktif = 'Y' ORDER BY t_formal";
 
 $sql = $mysqli->query($query);
 $arrmhs = array();
@@ -58,6 +58,7 @@ $excel->writeLabel(0, 24, "FOTO");
 $excel->writeLabel(0, 25, "STTS");
 $excel->writeLabel(0, 26, "T KOS");
 $excel->writeLabel(0, 27, "KET");
+$excel->writeLabel(0, 28, "NISN");
 
 // $excel->writeLabel(0, 0, "ID");
 // $excel->writeLabel(0, 1, "NAMA");
