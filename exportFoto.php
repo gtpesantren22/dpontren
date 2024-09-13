@@ -31,7 +31,7 @@ if ($this_zip) {
     if ($result->num_rows > 0) {
         // Loop melalui hasil dan menambahkan file ke dalam ZIP
         while ($row = $result->fetch_assoc()) {
-            $file_name = $row['file_name'];
+            $file_name = $row['foto'];
             $file_path = "images/santri/" . $file_name; // Asumsikan file tersimpan di folder ../image/
 
             // Cek apakah file ada sebelum menambahkannya ke dalam ZIP
