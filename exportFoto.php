@@ -15,6 +15,9 @@ $lembaga = $_POST['lembaga'];
 $jkl = $_POST['jkl'];
 $jklname = $jkl == 'Laki-laki' ? 'Putra' : 'Putri';
 
+ini_set('memory_limit', '512M'); // Sesuaikan dengan kebutuhan
+set_time_limit(0); // Menghilangkan batas waktu eksekusi
+
 /// create a zip file
 $zip_file = "images/all-santri-image.zip";
 touch($zip_file);
@@ -53,6 +56,8 @@ if ($this_zip) {
 
     // download this created zip file
     if (file_exists($zip_file)) {
+        ob_clean(); // Bersihkan buffer output
+        flush();
         //name when download
         $demo_name = "santri-$lembaga-$jklname.zip";
 
