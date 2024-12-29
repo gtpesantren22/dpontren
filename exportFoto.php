@@ -1,19 +1,6 @@
 <?php
-session_start();
 include 'fungsi.php';
 
-// if (!isset($_SESSION['04bb9374-8e84-48c8-b858-cfaa2087b56f'])) {
-//     echo "
-//     <script>
-//     alert('Silahkan login dulu');
-//     window.location = 'login.php';
-//     </script>
-//     ";
-// }
-
-// $lembaga = $_POST['lembaga'];
-// $jkl = $_POST['jkl'];
-// $jklname = $jkl == 'Laki-laki' ? 'Putra' : 'Putri';
 $kks = $_GET['kls'];
 $kls = explode('-', $kks);
 $kelas = $kls[0];
