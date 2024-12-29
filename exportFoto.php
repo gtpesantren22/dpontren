@@ -25,7 +25,7 @@ $this_zip = $zip->open($zip_file);
 if ($this_zip) {
 
     // Query untuk mengambil data file dari database
-    $sql = "SELECT foto FROM tb_santri WHERE aktif = 'Y' AND t_formal = '$lembaga' AND k_formal = '$kelas' AND r_formal = '$rombel' AND jurusan = '$jurusan' AND foto != '' "; // Sesuaikan dengan tabel Anda
+    $sql = "SELECT nis,nama,foto FROM tb_santri WHERE aktif = 'Y' AND t_formal = '$lembaga' AND k_formal = '$kelas' AND r_formal = '$rombel' AND jurusan = '$jurusan' AND foto != '' "; // Sesuaikan dengan tabel Anda
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {

@@ -17,7 +17,7 @@
             font-size: 16px;
             /* Ukuran font */
             text-align: left;
-            /* Rata teks ke kiri */
+            /* Rata teks ke kiri *//
         }
 
         th,
