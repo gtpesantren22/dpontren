@@ -78,7 +78,7 @@ $lembaga = $kls[3];
             include 'fungsi.php';
             $no = 1;
 
-            $sql = mysqli_query($conn, "SELECT * FROM tb_santri WHERE aktif = 'Y' AND t_formal = '$lembaga' AND k_formal = '$kelas' AND r_formal = '$rombel' AND jurusan = '$jurusan' ");
+            $sql = mysqli_query($conn, "SELECT * FROM tb_santri WHERE aktif = 'Y' AND t_formal = '$lembaga' AND k_formal = '$kelas' AND r_formal = '$rombel' AND jurusan = '$jurusan' ORDER BY nama ASC ");
             while ($row = mysqli_fetch_object($sql)):
             ?>
                 <tr>
