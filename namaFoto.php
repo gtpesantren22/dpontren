@@ -49,13 +49,27 @@
         }
     </style>
 </head>
+<?php
+$kks = $_GET['kls'];
+$kls = explode('-', $kks);
+$kelas = $kls[0];
+$jurusan = $kls[1];
+$rombel = $kls[2];
+$lembaga = $kls[3];
+?>
 
 <body>
+    Download Foto --> <button onclick="window.location.href='<?= 'exportFoto.php?kls=' . $kks ?>'"><?= $kks ?></button><br>
     <table>
         <thead>
             <tr>
                 <th>No</th>
-                <th>Lembaga</th>
+                <th>NIS</th>
+                <th>NISN</th>
+                <th>Nama</th>
+                <th>Tmp Lahir</th>
+                <th>Tgl Lahir</th>
+                <th>Alamat</th>
                 <th>Kelas</th>
             </tr>
         </thead>
@@ -63,19 +77,19 @@
             <?php
             include 'fungsi.php';
             $no = 1;
-            $sql = mysqli_query($conn, "SELECT t_formal FROM tb_santri WHERE aktif = 'Y' GROUP BY t_formal ");
+
+            $sql = mysqli_query($conn, "SELECT * FROM tb_santri WHERE aktif = 'Y' AND t_formal = '$lembaga' AND k_formal = '$kelas' AND r_formal = '$rombel' AND jurusan = '$jurusan' ");
             while ($row = mysqli_fetch_object($sql)):
             ?>
                 <tr>
                     <td><?= $no++ ?></td>
-                    <td><?= $row->t_formal ?></td>
-                    <td>
-                        <?php
-                        $lembaga = mysqli_query($conn, "SELECT * FROM kl_formal WHERE lembaga = '$row->t_formal' ORDER BY nm_kelas ASC ");
-                        while ($hasilMTs = mysqli_fetch_assoc($lembaga)) { ?>
-                            <button onclick="window.location.href='<?= 'namaFoto.php?kls=' . $hasilMTs['nm_kelas'] ?>'"><?= $hasilMTs['nm_kelas'] ?></button>
-                        <?php } ?>
-                    </td>
+                    <td><?= $row->nis ?></td>
+                    <td><?= $row->nisn ?></td>
+                    <td><?= $row->nama ?></td>
+                    <td><?= $row->tempat ?></td>
+                    <td><?= $row->tanggal ?></td>
+                    <td><?= $row->desa . ' - ' . $row->kec . ' - ' . $row->kab ?></td>
+                    <td><?= $row->k_formal . ' - ' . $row->t_formal ?></td>
                 </tr>
             <?php endwhile ?>
         </tbody>
