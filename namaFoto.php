@@ -59,7 +59,7 @@ $lembaga = $kls[3];
 ?>
 
 <body>
-    Download Foto --> <button onclick="window.location.href='<?= 'exportFoto.php?kls=' . $kks ?>'"><?= $kks ?></button><br>
+    Download Foto ==> <button onclick="window.location.href='<?= 'exportFoto.php?kls=' . $kks ?>'"><?= $kks ?></button><br>
     <table>
         <thead>
             <tr>
@@ -71,6 +71,7 @@ $lembaga = $kls[3];
                 <th>Tgl Lahir</th>
                 <th>Alamat</th>
                 <th>Kelas</th>
+                <th>ID</th>
             </tr>
         </thead>
         <tbody>
@@ -80,6 +81,7 @@ $lembaga = $kls[3];
 
             $sql = mysqli_query($conn, "SELECT * FROM tb_santri WHERE aktif = 'Y' AND t_formal = '$lembaga' AND k_formal = '$kelas' AND r_formal = '$rombel' AND jurusan = '$jurusan' ORDER BY nama ASC ");
             while ($row = mysqli_fetch_object($sql)):
+                $ID = getID($row->nama);
             ?>
                 <tr>
                     <td><?= $no++ ?></td>
@@ -90,6 +92,16 @@ $lembaga = $kls[3];
                     <td><?= $row->tanggal ?></td>
                     <td><?= $row->desa . ' - ' . $row->kec . ' - ' . $row->kab ?></td>
                     <td><?= $row->k_formal . ' - ' . $row->t_formal ?></td>
+                    <td><?php
+                        if (isset($ID['data']['data'][0]['peserta_didik_id']) && !empty($ID['data']['data'][0]['peserta_didik_id'])) {
+                            echo "<pre>";
+                            print_r($ID['data']['data'][0]['peserta_didik_id']);
+                            echo "</pre>";
+                        } else {
+                            echo "Kosong. Catat tanyakn ke ghule";
+                        }
+                        ?>
+                    </td>
                 </tr>
             <?php endwhile ?>
         </tbody>
