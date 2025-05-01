@@ -3,10 +3,12 @@
 $conn = mysqli_connect("localhost", "root", "", "db_santri");
 $conn2 = mysqli_connect("localhost", "root", "", "psb24");
 $conn_info = mysqli_connect("localhost", "root", "", "db_info");
+$conn_psb = mysqli_connect("localhost", "root", "", "psb24");
 
 // $conn = mysqli_connect("localhost", "u9048253_dwk", "PesantrenDWKIT2021", "u9048253_santri");
 // $conn2 = mysqli_connect("localhost", "u9048253_dwk", "PesantrenDWKIT2021", "u9048253_psb24");
 // $conn_info = mysqli_connect("localhost", "u9048253_dwk", "PesantrenDWKIT2021", "u9048253_info");
+// $conn_psb = mysqli_connect("localhost", "u9048253_dwk", "PesantrenDWKIT2021", "u9048253_psb24");
 
 $t = array('Bayar', 'Ust/Usdtz', 'Khaddam', 'Gratis', 'Berhenti');
 $tl = array('', 'MTs', 'SMP', 'MA', 'SMK');
@@ -19,7 +21,7 @@ function getID($nama)
 
     // $namaOk = mysqli_real_escape_string($this->conn, $nama);
     $namaOk = htmlspecialchars($nama);
-    $url = "https://data.ppdwk.com/api/datatables?data=referensi-peserta-didik&page=1&per_page=10&q=$namaOk&sortby=nama&sortbydesc=ASC"; // Ganti dengan URL API
+    $url = "https://data.ppdwk.com/api/datatables?data=referensi-peserta-didik&page=1&per_page=10&q=" . urlencode($namaOk) . "&sortby=nama&sortbydesc=ASC"; // Ganti dengan URL API
     $token = "170|zHj9KgqTrOebyIxm8dqw0qjPTH7JYnR8AdN61f467a6c42e0"; // Ganti dengan token yang sesuai
 
     // Inisialisasi cURL
