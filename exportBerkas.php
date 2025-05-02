@@ -1,40 +1,46 @@
 <?php
 include 'fungsi.php';
 
-$nis = $_GET['nis'];
+$nis = isset($_GET['nis']) ? intval($_GET['nis']) : 0;
 
-ini_set('memory_limit', '512M'); // Sesuaikan dengan kebutuhan
-set_time_limit(0); // Menghilangkan batas waktu eksekusi
+if (!$nis) {
+    die('NIS tidak valid.');
+}
 
-$dataS = mysqli_fetch_assoc(mysqli_query($conn_psb, "SELECT * FROM tb_santri WHERE nis = $nis "));
+ini_set('memory_limit', '512M');
+set_time_limit(0);
 
-/// create a zip file
-$zipFilename = "images/berkas_" . $dataS['nama'] . ".zip";
-// touch($zip_file);
-// end
+// Ambil data santri
+$dataS = mysqli_fetch_assoc(mysqli_query($conn_psb, "SELECT * FROM tb_santri WHERE nis = $nis"));
 
+if (!$dataS) {
+    die("Data santri tidak ditemukan.");
+}
 
-// open zip file
+// Sanitasi nama file zip
+$nama_santri = preg_replace('/[^a-zA-Z0-9_-]/', '_', $dataS['nama']);
+$zip_file = "images/berkas_" . $nama_santri . ".zip";
+
+// Inisialisasi ZIP
 $zip = new ZipArchive;
-// $this_zip = $zip->open($zip_file);
+if ($zip->open($zip_file, ZipArchive::CREATE | ZipArchive::OVERWRITE)) {
 
-$sql = "SELECT a.*, b.diri, b.ayah, b.ibu 
-        FROM berkas_file a 
-        LEFT JOIN foto_file b ON a.nis = b.nis 
-        WHERE a.nis = '$nis'";
+    $sql = "SELECT a.*, b.diri, b.ayah, b.ibu 
+            FROM berkas_file a 
+            LEFT JOIN foto_file b ON a.nis = b.nis 
+            WHERE a.nis = '$nis'";
 
-$result = $conn_psb->query($sql);
+    $result = $conn_psb->query($sql);
 
-if ($zip->open($zipFilename, ZipArchive::CREATE) === TRUE) {
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            // Daftar file yang akan dicek dari tabel
-            $file_fields = ['akta', 'kk', 'ktp_ayah', 'ktp_ibu', 'skl', 'ijazah', 'kip', 'diri', 'ayah', 'ibu']; // nama kolom file
+            $file_fields = ['akta', 'kk', 'ktp_ayah', 'ktp_ibu', 'skl', 'ijazah', 'kip', 'diri', 'ayah', 'ibu'];
 
             foreach ($file_fields as $field) {
                 if (!empty($row[$field])) {
-                    $file_path = "https://psb.ppdwk.com/assets/berkas/akta/" . $row[$field];
-                    $new_file_name =  basename($row[$field]);
+                    // Lokasi file di server
+                    $file_path = __DIR__ . "/assets/berkas/" . $row[$field]; // Sesuaikan dengan path server
+                    $new_file_name = $field . '_' . basename($row[$field]);
 
                     if (file_exists($file_path)) {
                         $zip->addFile($file_path, $new_file_name);
@@ -43,14 +49,26 @@ if ($zip->open($zipFilename, ZipArchive::CREATE) === TRUE) {
             }
         }
     }
+
     $zip->close();
 
     // Download ZIP
-    header('Content-Type: application/zip');
-    header('Content-disposition: attachment; filename=' . $zipFilename);
-    header('Content-Length: ' . filesize($zipFilename));
-    readfile($zipFilename);
-    unlink($zipFilename); // hapus file zip setelah di-download
+    if (file_exists($zip_file)) {
+        ob_clean();
+        flush();
+
+        header('Content-Type: application/zip');
+        header('Content-Disposition: attachment; filename="' . basename($zip_file) . '"');
+        header('Content-Length: ' . filesize($zip_file));
+        readfile($zip_file);
+
+        unlink($zip_file); // Hapus setelah didownload
+        exit;
+    } else {
+        die("ZIP file tidak ditemukan.");
+    }
 } else {
-    echo "Gagal membuat file ZIP.";
+    die("Gagal membuat ZIP file.");
 }
+
+$conn_psb->close();
