@@ -19,7 +19,13 @@ if (!$dataS) {
 
 // Sanitasi nama file zip
 $nama_santri = preg_replace('/[^a-zA-Z0-9_-]/', '_', $dataS['nama']);
-$zip_file = "images/berkas_" . $nama_santri . ".zip";
+$zip_folder = __DIR__ . "/images";
+if (!is_dir($zip_folder)) {
+    mkdir($zip_folder, 0755, true); // Buat folder jika belum ada
+}
+
+$zip_file = $zip_folder . "/berkas_" . $nama_santri . ".zip";
+
 
 // Inisialisasi ZIP
 $zip = new ZipArchive;
@@ -39,7 +45,7 @@ if ($zip->open($zip_file, ZipArchive::CREATE | ZipArchive::OVERWRITE)) {
             foreach ($file_fields as $field) {
                 if (!empty($row[$field])) {
                     // Lokasi file di server
-                    $file_path = __DIR__ . "/assets/berkas/" . $row[$field]; // Sesuaikan dengan path server
+                    $file_path =  "https://psb.ppdwk.com/assets/berkas/" . $field . "/" . $row[$field]; // Sesuaikan dengan path server
                     $new_file_name = $field . '_' . basename($row[$field]);
 
                     if (file_exists($file_path)) {
@@ -53,19 +59,19 @@ if ($zip->open($zip_file, ZipArchive::CREATE | ZipArchive::OVERWRITE)) {
     $zip->close();
 
     // Download ZIP
+    // Setelah zip->close()
     if (file_exists($zip_file)) {
         ob_clean();
         flush();
 
         header('Content-Type: application/zip');
-        header('Content-Disposition: attachment; filename="' . basename($zip_file) . '"');
+        header('Content-Disposition: attachment; filename="berkas_' . $nama_santri . '.zip"');
         header('Content-Length: ' . filesize($zip_file));
         readfile($zip_file);
-
-        unlink($zip_file); // Hapus setelah didownload
+        unlink($zip_file);
         exit;
     } else {
-        die("ZIP file tidak ditemukan.");
+        die("ZIP file tidak ditemukan di: " . $zip_file);
     }
 } else {
     die("Gagal membuat ZIP file.");
