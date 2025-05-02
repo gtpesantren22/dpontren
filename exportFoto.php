@@ -1,85 +1,67 @@
 <?php
 include 'fungsi.php';
 
-$nis = isset($_GET['nis']) ? intval($_GET['nis']) : 0;
-if (!$nis) {
-    die('NIS tidak valid.');
-}
+$kks = $_GET['kls'];
+$kls = explode('-', $kks);
+$kelas = $kls[0];
+$jurusan = $kls[1];
+$rombel = $kls[2];
+$lembaga = $kls[3];
 
-ini_set('memory_limit', '512M');
-set_time_limit(0);
+ini_set('memory_limit', '512M'); // Sesuaikan dengan kebutuhan
+set_time_limit(0); // Menghilangkan batas waktu eksekusi
 
-// Ambil data santri
-$dataS = mysqli_fetch_assoc(mysqli_query($conn_psb, "SELECT * FROM tb_santri WHERE nis = $nis"));
-if (!$dataS) {
-    die("Data santri tidak ditemukan.");
-}
+/// create a zip file
+$zip_file = "images/all-santri-image.zip";
+touch($zip_file);
+// end
 
-// Sanitasi nama file zip
-$nama_santri = preg_replace('/[^a-zA-Z0-9_-]/', '_', $dataS['nama']);
 
-// Buat folder jika belum ada
-$zip_folder = __DIR__ . "/images";
-if (!is_dir($zip_folder)) {
-    mkdir($zip_folder, 0755, true);
-}
+// open zip file
+$zip = new ZipArchive;
+$this_zip = $zip->open($zip_file);
 
-// Path lengkap file ZIP
-$zip_file = $zip_folder . "/berkas_" . $nama_santri . ".zip";
 
-// Inisialisasi ZIP
-$zip = new ZipArchive();
-if ($zip->open($zip_file, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== TRUE) {
-    die("Gagal membuat ZIP file.");
-}
+if ($this_zip) {
 
-// Query ambil file dari DB
-$sql = "SELECT a.*, b.diri, b.ayah, b.ibu 
-        FROM berkas_file a 
-        LEFT JOIN foto_file b ON a.nis = b.nis 
-        WHERE a.nis = '$nis'";
+    // Query untuk mengambil data file dari database
+    $sql = "SELECT nis,nama,foto FROM tb_santri WHERE aktif = 'Y' AND t_formal = '$lembaga' AND k_formal = '$kelas' AND r_formal = '$rombel' AND jurusan = '$jurusan' AND foto != '' "; // Sesuaikan dengan tabel Anda
+    $result = $conn->query($sql);
 
-$result = $conn_psb->query($sql);
+    if ($result->num_rows > 0) {
+        // Loop melalui hasil dan menambahkan file ke dalam ZIP
+        while ($row = $result->fetch_assoc()) {
+            $file_name = $row['foto'];
+            $new_file_name = $row['nis'] . '_' . $row['nama'] . '.jpg';
+            $file_path = "images/santri/" . $file_name; // Asumsikan file tersimpan di folder ../image/
 
-if ($result && $result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $file_fields = ['akta', 'kk', 'ktp_ayah', 'ktp_ibu', 'skl', 'ijazah', 'kip', 'diri', 'ayah', 'ibu'];
-
-        foreach ($file_fields as $field) {
-            if (!empty($row[$field])) {
-                $filename = basename($row[$field]);
-
-                // URL file
-                $file_url = "https://psb.ppdwk.com/assets/berkas/$field/$filename";
-                $new_file_name = $field . '_' . $filename;
-
-                // Ambil isi file dari URL
-                $file_content = @file_get_contents($file_url);
-                if ($file_content !== false) {
-                    $zip->addFromString($new_file_name, $file_content);
-                } else {
-                    error_log("Gagal mengunduh: $file_url");
-                }
+            // Cek apakah file ada sebelum menambahkannya ke dalam ZIP
+            if (file_exists($file_path)) {
+                $zip->addFile($file_path, $new_file_name); // Menambahkan file ke ZIP
             }
         }
+    } else {
+        echo "Tidak ada file ditemukan di database.";
     }
+
+    // Menutup ZIP
+    $zip->close();
+
+
+    // download this created zip file
+    if (file_exists($zip_file)) {
+        ob_clean(); // Bersihkan buffer output
+        flush();
+        //name when download
+        $demo_name = "foto_santri_$kks.zip";
+
+        header('Content-type: application/zip');
+        header('Content-Disposition: attachment; filename="' . $demo_name . '"');
+        readfile($zip_file); // auto download
+
+        //delete this zip file after download
+        unlink($zip_file);
+    }
+
+    $conn->close();
 }
-
-$zip->close();
-
-// Unduh file ZIP
-if (file_exists($zip_file)) {
-    ob_clean();
-    flush();
-
-    header('Content-Type: application/zip');
-    header('Content-Disposition: attachment; filename="berkas_' . $nama_santri . '.zip"');
-    header('Content-Length: ' . filesize($zip_file));
-    readfile($zip_file);
-    unlink($zip_file);
-    exit;
-} else {
-    die("ZIP file tidak ditemukan di: " . $zip_file);
-}
-
-$conn_psb->close();
