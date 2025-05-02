@@ -19,12 +19,23 @@ if (!$dataS) {
 
 // Sanitasi nama file zip
 $nama_santri = preg_replace('/[^a-zA-Z0-9_-]/', '_', $dataS['nama']);
+
+// Buat folder jika belum ada
 $zip_folder = __DIR__ . "/images";
 if (!is_dir($zip_folder)) {
-    mkdir($zip_folder, 0755, true); // Buat folder jika belum ada
+    mkdir($zip_folder, 0755, true); // buat folder images jika belum ada
 }
 
+// Full path ke file ZIP
 $zip_file = $zip_folder . "/berkas_" . $nama_santri . ".zip";
+
+// Inisialisasi ZipArchive
+$zip = new ZipArchive();
+$openZip = $zip->open($zip_file, ZipArchive::CREATE | ZipArchive::OVERWRITE);
+
+if ($openZip !== TRUE) {
+    die("Gagal membuka ZIP file. Kode error: $openZip");
+}
 
 
 // Inisialisasi ZIP
