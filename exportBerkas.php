@@ -29,8 +29,9 @@ $zip_file = $zip_folder . "/berkas_" . $nama_santri . ".zip";
 
 // Inisialisasi ZIP
 $zip = new ZipArchive();
-if ($zip->open($zip_file, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== TRUE) {
-    die("Gagal membuat ZIP file.");
+$open_result = $zip->open($zip_file, ZipArchive::CREATE | ZipArchive::OVERWRITE);
+if ($open_result !== TRUE) {
+    die("Gagal membuat ZIP file. Kode error: " . $open_result);
 }
 
 // Query ambil file dari DB
@@ -40,6 +41,7 @@ $sql = "SELECT a.*, b.diri, b.ayah, b.ibu
         WHERE a.nis = '$nis'";
 
 $result = $conn_psb->query($sql);
+$jumlah_file = 0;
 
 if ($result && $result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
@@ -48,18 +50,30 @@ if ($result && $result->num_rows > 0) {
         foreach ($file_fields as $field) {
             if (!empty($row[$field])) {
                 $filename = basename($row[$field]);
-
-                // URL file
                 $file_url = "https://psb.ppdwk.com/assets/berkas/$field/$filename";
                 $new_file_name = $field . '_' . $filename;
 
-                // Ambil isi file dari URL
+                // Download file
                 $file_content = @file_get_contents($file_url);
-                if ($file_content !== false) {
-                    $zip->addFromString($new_file_name, $file_content);
-                } else {
-                    error_log("Gagal mengunduh: $file_url");
+
+                if ($file_content === false) {
+                    // Coba pakai cURL
+                    $ch = curl_init($file_url);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+                    $file_content = curl_exec($ch);
+                    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                    curl_close($ch);
+
+                    if ($http_code !== 200 || $file_content === false) {
+                        echo "<p style='color:red'>Gagal mengunduh: $file_url (HTTP $http_code)</p>";
+                        continue;
+                    }
                 }
+
+                // Tambahkan ke ZIP
+                $zip->addFromString($new_file_name, $file_content);
+                $jumlah_file++;
             }
         }
     }
@@ -67,8 +81,8 @@ if ($result && $result->num_rows > 0) {
 
 $zip->close();
 
-// Unduh file ZIP
-if (file_exists($zip_file)) {
+// Validasi apakah file berhasil dibuat
+if (file_exists($zip_file) && $jumlah_file > 0) {
     ob_clean();
     flush();
 
@@ -79,7 +93,7 @@ if (file_exists($zip_file)) {
     unlink($zip_file);
     exit;
 } else {
-    die("ZIP file tidak ditemukan di: " . $zip_file);
+    die("ZIP file tidak ditemukan atau kosong di: $zip_file<br>Total file dimasukkan: $jumlah_file");
 }
 
 $conn_psb->close();
